@@ -26,7 +26,7 @@ spring:
             username: oranje
             password: oranje123!
     mail:
-        host: localhost
+        host: 10.70.4.161
     messages:
         cache-seconds: 1
     thymeleaf:

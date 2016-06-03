@@ -23,6 +23,7 @@ import org.springframework.web.bind.annotation.RestController;
 
 import com.codahale.metrics.annotation.Timed;
 import com.oranje.domain.Fixture;
+import com.oranje.domain.HomeAwayScore;
 import com.oranje.domain.Prediction;
 import com.oranje.repository.FixtureRepository;
 import com.oranje.repository.PredictionRepository;
@@ -39,7 +40,7 @@ public class FixtureResource {
 
 	@Inject
 	private FixtureRepository fixtureRepository;
-	
+
 	@Inject
 	private PredictionRepository predictionRepository;
 
@@ -121,12 +122,12 @@ public class FixtureResource {
 
 		fixtureRepository.save(f);
 
-		updateScoreAndPoints(id, tmpStrArr.get(0) + "-" + tmpStrArr.get(1), result);
+		updateScoreAndPoints(id, f.getHomeGoals(), f.getAwayGoals(), result);
 		return null;
 
 	}
 
-	private void updateScoreAndPoints(String id, String score, String result) {
+	private void updateScoreAndPoints(String id, Integer home, Integer away, String result) {
 
 		List<Prediction> worldCupUserPredictions = predictionRepository.findAll();
 
@@ -134,25 +135,22 @@ public class FixtureResource {
 
 			boolean hasChanges = false;
 
-			List<String> tmpStrArr = Arrays.asList(wcp.getResultPerEvent().get(id).split("-"));
+			HomeAwayScore has = wcp.getResultPerEvent().get(id);
+
 			String tmpResult = "1";
-			if (Integer.parseInt(tmpStrArr.get(0)) == Integer.parseInt(tmpStrArr.get(1))) {
+			if (has.getHomeScore() == has.getAwayScore()) {
 				tmpResult = "X";
-			} else if (Integer.parseInt(tmpStrArr.get(0)) < Integer.parseInt(tmpStrArr.get(1))) {
+			} else if (has.getHomeScore() < has.getAwayScore()) {
 				tmpResult = "2";
 			}
 
-			 
-
-			if (wcp.getResultPerEvent().get(id).equals(score)) {
+			if (has.getHomeScore().equals(home) && has.getAwayScore().equals(away)) {
 
 				hasChanges = true;
 				Integer points = wcp.getPoints() + 10;
 				Integer correctScores = wcp.getCorrectScores() + 1;
 				wcp.setPoints(points);
 				wcp.setCorrectScores(correctScores);
-				
-			 
 
 			} else if (tmpResult.equals(result)) {
 

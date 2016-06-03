@@ -89,14 +89,9 @@ public class PredictionResource {
         method = RequestMethod.GET,
         produces = MediaType.APPLICATION_JSON_VALUE)
     @Timed
-    public ResponseEntity<Prediction> getPrediction(@PathVariable String username) {
+    public  Prediction  getPrediction(@PathVariable String username) {
         log.debug("REST request to get Prediction : {}", username);
-        Prediction prediction = predictionRepository.findOne(username);
-        return Optional.ofNullable(prediction)
-            .map(result -> new ResponseEntity<>(
-                result,
-                HttpStatus.OK))
-            .orElse(new ResponseEntity<>(HttpStatus.NOT_FOUND));
+        return predictionRepository.findOneByUsername(username);
     }
 
     

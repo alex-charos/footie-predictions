@@ -30,7 +30,7 @@ public class Prediction implements Serializable {
     @Field("correct_results")
     private Integer correctResults;
     
-    private Map<String,String> resultPerEvent;
+    private Map<String,HomeAwayScore> resultPerEvent;
     
     
     public String getId() {
@@ -104,11 +104,11 @@ public class Prediction implements Serializable {
             '}';
     }
 
-	public Map<String,String> getResultPerEvent() {
+	public Map<String,HomeAwayScore> getResultPerEvent() {
 		return resultPerEvent;
 	}
 
-	public void setResultPerEvent(Map<String,String> resultPerEvent) {
+	public void setResultPerEvent(Map<String,HomeAwayScore> resultPerEvent) {
 		this.resultPerEvent = resultPerEvent;
 	}
 }

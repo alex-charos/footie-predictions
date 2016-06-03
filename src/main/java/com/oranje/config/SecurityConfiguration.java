@@ -1,7 +1,7 @@
 package com.oranje.config;
 
-import com.oranje.security.*;
-import com.oranje.web.filter.CsrfCookieGeneratorFilter;
+import javax.inject.Inject;
+
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.core.env.Environment;
@@ -12,14 +12,19 @@ import org.springframework.security.config.annotation.web.builders.WebSecurity;
 import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity;
 import org.springframework.security.config.annotation.web.configuration.WebSecurityConfigurerAdapter;
 import org.springframework.security.core.userdetails.UserDetailsService;
-import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
+import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.security.data.repository.query.SecurityEvaluationContextExtension;
-
 import org.springframework.security.web.authentication.RememberMeServices;
 import org.springframework.security.web.csrf.CsrfFilter;
 
-import javax.inject.Inject;
+import com.oranje.security.AjaxAuthenticationFailureHandler;
+import com.oranje.security.AjaxAuthenticationSuccessHandler;
+import com.oranje.security.AjaxLogoutSuccessHandler;
+import com.oranje.security.AuthoritiesConstants;
+import com.oranje.security.CustomAccessDeniedHandler;
+import com.oranje.security.Http401UnauthorizedEntryPoint;
+import com.oranje.web.filter.CsrfCookieGeneratorFilter;
 
 @Configuration
 @EnableWebSecurity
@@ -28,6 +33,9 @@ public class SecurityConfiguration extends WebSecurityConfigurerAdapter {
 
     @Inject
     private Environment env;
+    
+    @Inject
+    private JHipsterProperties applicationProperties;
 
     @Inject
     private AjaxAuthenticationSuccessHandler ajaxAuthenticationSuccessHandler;
@@ -84,7 +92,7 @@ public class SecurityConfiguration extends WebSecurityConfigurerAdapter {
             .rememberMe()
             .rememberMeServices(rememberMeServices)
             .rememberMeParameter("remember-me")
-            .key(env.getProperty("jhipster.security.rememberme.key"))
+            .key(applicationProperties.getSecurity().getRememberme().getKey())
         .and()
             .formLogin()
             .loginProcessingUrl("/api/authentication")
@@ -112,7 +120,7 @@ public class SecurityConfiguration extends WebSecurityConfigurerAdapter {
             .antMatchers("/api/account/reset_password/finish").permitAll()
             .antMatchers("/api/logs/**").hasAuthority(AuthoritiesConstants.ADMIN)
             .antMatchers("/api/audits/**").hasAuthority(AuthoritiesConstants.ADMIN)
-            .antMatchers("/api/**").anonymous()
+            .antMatchers("/api/**").authenticated()
             .antMatchers("/websocket/tracker").hasAuthority(AuthoritiesConstants.ADMIN)
             .antMatchers("/websocket/**").permitAll()
             .antMatchers("/metrics/**").hasAuthority(AuthoritiesConstants.ADMIN)
