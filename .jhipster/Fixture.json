@@ -1,0 +1,53 @@
+{
+    "relationships": [],
+    "fields": [
+        {
+            "fieldId": 1,
+            "fieldName": "home",
+            "fieldType": "String"
+        },
+        {
+            "fieldId": 2,
+            "fieldName": "away",
+            "fieldType": "String"
+        },
+        {
+            "fieldId": 3,
+            "fieldName": "homeGoals",
+            "fieldType": "Integer"
+        },
+        {
+            "fieldId": 4,
+            "fieldName": "awayGoals",
+            "fieldType": "Integer"
+        },
+        {
+            "fieldId": 5,
+            "fieldName": "hasResult",
+            "fieldType": "Boolean"
+        },
+        {
+            "fieldId": 6,
+            "fieldName": "result",
+            "fieldType": "String"
+        },
+        {
+            "fieldId": 7,
+            "fieldName": "group",
+            "fieldType": "String"
+        },
+        {
+            "fieldId": 8,
+            "fieldName": "homeFlag",
+            "fieldType": "String"
+        },
+        {
+            "fieldId": 9,
+            "fieldName": "awayFlag",
+            "fieldType": "String"
+        }
+    ],
+    "dto": "no",
+    "service": "no",
+    "pagination": "no"
+}

@@ -1,0 +1,72 @@
+<div>
+    <h2>Fixtures</h2>
+    <jh-alert></jh-alert>
+    <div class="container-fluid">
+        <div class="row">
+            <div class="col-xs-4 no-padding-left">
+                <button class="btn btn-primary" ui-sref="fixture.new" >
+                    <span class="glyphicon glyphicon-plus"></span>
+                    <span 
+                       >Create new Fixture
+                    </span>
+                </button>
+            </div>
+        </div>
+    </div>
+    <br/>
+    <div class="table-responsive">
+        <table class="jh-table table table-striped">
+            <thead>
+                <tr>
+                    <th><span>ID</span></th>
+                    <th><span>Home</span></th>
+                    <th><span>Away</span></th>
+                    <th><span>HomeGoals</span></th>
+                    <th><span>AwayGoals</span></th>
+                    <th><span>HasResult</span></th>
+                    <th><span>Result</span></th>
+                    <th><span>Group</span></th>
+                    <th><span>HomeFlag</span></th>
+                    <th><span>AwayFlag</span></th>
+                    <th></th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr ng-repeat="fixture in fixtures track by fixture.id">
+                    <td><a ui-sref="fixture.detail({id:fixture.id})">{{fixture.id}}</a></td>
+                    <td>{{fixture.home}}</td>
+                    <td>{{fixture.away}}</td>
+                    <td>{{fixture.homeGoals}}</td>
+                    <td>{{fixture.awayGoals}}</td>
+                    <td>{{fixture.hasResult}}</td>
+                    <td>{{fixture.result}}</td>
+                    <td>{{fixture.group}}</td>
+                    <td>{{fixture.homeFlag}}</td>
+                    <td>{{fixture.awayFlag}}</td>
+                    <td class="text-right">
+                        <div class="btn-group flex-btn-group-container">
+                            <button type="submit"
+                                    ui-sref="fixture.detail({id:fixture.id})"
+                                    class="btn btn-info btn-sm"> 
+                                <span class="glyphicon glyphicon-eye-open"></span>
+                                <span class="hidden-xs hidden-sm"></span>
+                            </button>
+                            <button type="submit"
+                                    ui-sref="fixture.edit({id:fixture.id})"
+                                    class="btn btn-primary btn-sm">
+                                <span class="glyphicon glyphicon-pencil"></span>
+                                <span class="hidden-xs hidden-sm"></span>
+                            </button>
+                            <button type="submit"
+                                    ui-sref="fixture.delete({id:fixture.id})"
+                                    class="btn btn-danger btn-sm">                                    
+                                <span class="glyphicon glyphicon-remove-circle"></span>
+                                <span class="hidden-xs hidden-sm"></span>
+                            </button>
+                        </div>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+</div>

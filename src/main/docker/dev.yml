@@ -1,0 +1,7 @@
+footierepo-dev-mongodb:
+  container_name: footierepo-dev-mongodb
+  image: mongo:3.0.7
+  # volumes:
+  #   - ~/volumes/jhipster/footierepo/dev-mongodb/:/data/db/
+  ports:
+    - "27017:27017"

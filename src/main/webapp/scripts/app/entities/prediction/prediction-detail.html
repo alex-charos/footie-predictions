@@ -1,0 +1,54 @@
+
+<div>
+    <h2><span>Prediction</span> {{prediction.id}}</h2>
+    <div class="table-responsive">
+        <table class="table table-striped">
+            <thead>
+            <tr>
+                <th>Field</th>
+                <th>Value</th>
+            </tr>
+            </thead>
+            <tbody>
+            <tr>
+                <td>
+                    <span>Username</span>
+                </td>
+                <td>
+                    <span class="form-control-static">{{prediction.username}}</span>
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    <span>Points</span>
+                </td>
+                <td>
+                    <span class="form-control-static">{{prediction.points}}</span>
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    <span>CorrectScores</span>
+                </td>
+                <td>
+                    <span class="form-control-static">{{prediction.correctScores}}</span>
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    <span>CorrectResults</span>
+                </td>
+                <td>
+                    <span class="form-control-static">{{prediction.correctResults}}</span>
+                </td>
+            </tr>
+            </tbody>
+        </table>
+    </div>
+
+    <button type="submit"
+            onclick="window.history.back()"
+            class="btn btn-info">
+        <span class="glyphicon glyphicon-arrow-left"></span>&nbsp;<span> Back</span>
+    </button>
+</div>

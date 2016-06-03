@@ -1,0 +1,22 @@
+{
+  "generator-jhipster": {
+    "baseName": "footierepo",
+    "packageName": "com.oranje",
+    "packageFolder": "com/oranje",
+    "authenticationType": "session",
+    "hibernateCache": "no",
+    "clusteredHttpSession": "no",
+    "websocket": "spring-websocket",
+    "databaseType": "mongodb",
+    "devDatabaseType": "mongodb",
+    "prodDatabaseType": "mongodb",
+    "searchEngine": "no",
+    "useSass": false,
+    "buildTool": "maven",
+    "frontendBuilder": "grunt",
+    "enableTranslation": false,
+    "enableSocialSignIn": false,
+    "rememberMeKey": "b239610cb62179767b2a8cd71e81acf23df4e46d",
+    "testFrameworks": []
+  }
+}

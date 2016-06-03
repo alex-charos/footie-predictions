@@ -1,0 +1,80 @@
+
+<form name="editForm" role="form" novalidate ng-submit="save()">
+
+    <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal" aria-hidden="true"
+                ng-click="clear()">&times;</button>
+        <h4 class="modal-title" id="myFixtureLabel">Create or edit a Fixture</h4>
+    </div>
+    <div class="modal-body">
+        <jh-alert-error></jh-alert-error>
+        <div class="form-group">
+            <label for="id">ID</label>
+            <input type="text" class="form-control" id="id" name="id"
+                    ng-model="fixture.id" readonly />
+        </div>
+        <div class="form-group">
+            <label class="control-label" for="field_home">Home</label>
+            <input type="text" class="form-control" name="home" id="field_home"
+                    ng-model="fixture.home"
+                     />
+        </div>
+        <div class="form-group">
+            <label class="control-label" for="field_away">Away</label>
+            <input type="text" class="form-control" name="away" id="field_away"
+                    ng-model="fixture.away"
+                     />
+        </div>
+        <div class="form-group">
+            <label class="control-label" for="field_homeGoals">HomeGoals</label>
+            <input type="number" class="form-control" name="homeGoals" id="field_homeGoals"
+                    ng-model="fixture.homeGoals"
+                     />
+        </div>
+        <div class="form-group">
+            <label class="control-label" for="field_awayGoals">AwayGoals</label>
+            <input type="number" class="form-control" name="awayGoals" id="field_awayGoals"
+                    ng-model="fixture.awayGoals"
+                     />
+        </div>
+        <div class="form-group">
+            <label class="control-label" for="field_hasResult">HasResult</label>
+            <input type="checkbox" class="form-control" name="hasResult" id="field_hasResult"
+                    ng-model="fixture.hasResult"
+                     />
+        </div>
+        <div class="form-group">
+            <label class="control-label" for="field_result">Result</label>
+            <input type="text" class="form-control" name="result" id="field_result"
+                    ng-model="fixture.result"
+                     />
+        </div>
+        <div class="form-group">
+            <label class="control-label" for="field_group">Group</label>
+            <input type="text" class="form-control" name="group" id="field_group"
+                    ng-model="fixture.group"
+                     />
+        </div>
+        <div class="form-group">
+            <label class="control-label" for="field_homeFlag">HomeFlag</label>
+            <input type="text" class="form-control" name="homeFlag" id="field_homeFlag"
+                    ng-model="fixture.homeFlag"
+                     />
+        </div>
+        <div class="form-group">
+            <label class="control-label" for="field_awayFlag">AwayFlag</label>
+            <input type="text" class="form-control" name="awayFlag" id="field_awayFlag"
+                    ng-model="fixture.awayFlag"
+                     />
+        </div>
+
+    </div>
+    <div class="modal-footer">
+        <button type="button" class="btn btn-default" data-dismiss="modal" ng-click="clear()">
+            <span class="glyphicon glyphicon-ban-circle"></span>&nbsp;<span>Cancel</span>
+        </button>
+        <button type="submit" ng-disabled="editForm.$invalid || isSaving" class="btn btn-primary">
+            <span class="glyphicon glyphicon-save"></span>&nbsp;<span>Save</span>
+        </button>
+    </div>
+</form>
