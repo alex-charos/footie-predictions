@@ -1,11 +1,28 @@
 'use strict';
 
 angular.module('footierepoApp')
-    .controller('PredictionController', function ($scope, $state, Prediction, Fixture) {
+    .controller('PredictionController', function ($scope, $state, Prediction, Fixture, Principal) {
 
+
+        $scope.predictionsEnd = new Date("June 10, 2016 00:00:00");
+        $scope.currentDate = new Date();
+
+        $scope.getid = function(){
+            Principal.identity().then(function(data) {
+                
+                $scope.username = data.login;
+                $scope.loadAll();
+
+            });
+        };
+
+        $scope.getid();
         $scope.predictions = {};
         $scope.fixtures = [];
-        $scope.username = "test";
+        $scope.editPredictions = function() {
+
+            return $scope.currentDate <= $scope.predictionsEnd;
+        }
         $scope.save = function(){
             Prediction.update($scope.predictions);
         }
@@ -23,7 +40,7 @@ angular.module('footierepoApp')
                             pred.resultPerEvent = {};
                         }
                         if (pred.resultPerEvent[$scope.fixtures[i].id] === undefined || pred.resultPerEvent[$scope.fixtures[i].id] ===null )  {
-                            pred.resultPerEvent[$scope.fixtures[i].id] = {homeScore:0, awayScore:0};
+                            pred.resultPerEvent[$scope.fixtures[i].id] = {homeScore:'', awayScore:''};
                         }
                     }
 
@@ -35,7 +52,7 @@ angular.module('footierepoApp')
 
             });
         };
-        $scope.loadAll();
+        
 
         $scope.getHomeByFixtureId = function(id){
               for (var i =0; i< $scope.fixtures.length; i++) {

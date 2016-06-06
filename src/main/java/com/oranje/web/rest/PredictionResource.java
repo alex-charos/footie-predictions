@@ -15,6 +15,7 @@ import org.springframework.web.bind.annotation.*;
 import javax.inject.Inject;
 import java.net.URI;
 import java.net.URISyntaxException;
+import java.security.Principal;
 import java.util.List;
 import java.util.Optional;
 
@@ -55,11 +56,13 @@ public class PredictionResource {
         method = RequestMethod.PUT,
         produces = MediaType.APPLICATION_JSON_VALUE)
     @Timed
-    public ResponseEntity<Prediction> updatePrediction(@RequestBody Prediction prediction) throws URISyntaxException {
+    public ResponseEntity<Prediction> updatePrediction(@RequestBody Prediction prediction, Principal principal) throws URISyntaxException {
         log.debug("REST request to update Prediction : {}", prediction);
+        prediction.setUsername(principal.getName());
         if (prediction.getId() == null) {
             return createPrediction(prediction);
         }
+       
         Prediction result = predictionRepository.save(prediction);
         return ResponseEntity.ok()
             .headers(HeaderUtil.createEntityUpdateAlert("prediction", prediction.getId().toString()))
@@ -91,7 +94,12 @@ public class PredictionResource {
     @Timed
     public  Prediction  getPrediction(@PathVariable String username) {
         log.debug("REST request to get Prediction : {}", username);
-        return predictionRepository.findOneByUsername(username);
+        Prediction p = predictionRepository.findOneByUsername(username);
+        
+        if (p==null) {
+        	p = new Prediction();
+        }
+        return p;
     }
 
     

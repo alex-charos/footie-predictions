@@ -5,7 +5,7 @@
         <div class="row">
             <div class="col-xs-4 no-padding-left">
                 <button class="btn btn-primary" ng-click="save()">
-                    <span class="glyphicon glyphicon-plus"></span>
+                    <span class="glyphicon glyphicon-ok"></span>
                     <span>Save Predictions
                     </span>
                 </button>
@@ -32,8 +32,22 @@
                     <td>{{getHomeByFixtureId(key)}}</td>
                     <td>{{getAwayByFixtureId(key)}}</td>
                     
-                    <td> <input type="text" ng-model = "value.homeScore" /></td>
-                    <td> <input type="text" ng-model = "value.awayScore" /></td>
+                    <td>
+                        <div ng-show="!editPredictions()">
+                            {{value.homeScore}}
+                        </div> 
+                        <div ng-show="editPredictions()"> 
+                            <input type="text" ng-model = "value.homeScore" /> 
+                        </div>
+                    </td>
+                    <td>
+                        <div ng-show="!editPredictions()">
+                             {{value.awayScore}}
+                        </div> 
+                        <div ng-show="editPredictions()">
+                            <input type="text" ng-model = "value.awayScore" /> 
+                        </div>
+                    </td>
                     
                 </tr>
             </tbody>

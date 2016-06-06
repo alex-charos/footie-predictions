@@ -50,6 +50,9 @@ public class Prediction implements Serializable {
     }
 
     public Integer getPoints() {
+    	if (points ==null){
+    		points = 0;
+    	}
         return points;
     }
     
@@ -58,6 +61,9 @@ public class Prediction implements Serializable {
     }
 
     public Integer getCorrectScores() {
+    	if (correctScores == null) {
+    		correctScores = 0;
+    	}
         return correctScores;
     }
     
@@ -66,6 +72,9 @@ public class Prediction implements Serializable {
     }
 
     public Integer getCorrectResults() {
+    	if (correctResults == null) {
+    		correctResults = 0;
+    	}
         return correctResults;
     }
     

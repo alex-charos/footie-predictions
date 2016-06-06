@@ -11,6 +11,10 @@ angular.module('footierepoApp')
                     return data;
                 }
             },
-            'update': { method:'PUT' }
+            'update': { method:'PUT' },
+            'updateResult': {
+                method:'GET',
+                url: 'api/fixtures/update/result/:id'
+            }
         });
     });
