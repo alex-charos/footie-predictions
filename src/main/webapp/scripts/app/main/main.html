@@ -3,6 +3,7 @@
         <div class="col-md-4">
            <img src="https://upload.wikimedia.org/wikipedia/en/thumb/f/f1/UEFA_Euro_2016_Logo.svg/200px-UEFA_Euro_2016_Logo.svg.png" />
         </div>
+
         <div class="col-md-8">
             <div class="table-responsive">
         <table class="jh-table table table-striped">
@@ -19,7 +20,7 @@
             <tbody>
                 <tr ng-repeat="prediction in predictions | orderBy:['-points','-correctScores', '-correctResults']">
                    
-                    <td>{{prediction.username}}</td>
+                    <td> <img src="{{getAvatarByUsername( prediction.username)}}" /></td>
                     <td>{{prediction.username}}</td>
                     <td>{{prediction.points}}</td>
                     <td>{{prediction.correctScores}}</td>
