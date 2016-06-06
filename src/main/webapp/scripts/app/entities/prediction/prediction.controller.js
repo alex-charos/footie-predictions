@@ -18,6 +18,7 @@ angular.module('footierepoApp')
 
         $scope.getid();
         $scope.predictions = {};
+        $scope.customPredictions = [];
         $scope.fixtures = [];
         $scope.editPredictions = function() {
 
@@ -34,15 +35,6 @@ angular.module('footierepoApp')
                     if (pred === undefined || pred === null) {
                         pred = {username:$scope.username};
                     }
-
-                    $scope.fixtures.sort(function(a,b) {
-                        if(a.group != b.group){
-                            return a.group > b.group;
-                        }else{
-                            return a.order < b.order;
-                        }
-                    });
-
                     for (var i =0; i< $scope.fixtures.length; i++) {
                         if (pred.resultPerEvent === null || pred.resultPerEvent === undefined) {
                             pred.resultPerEvent = {};
@@ -50,9 +42,15 @@ angular.module('footierepoApp')
                         if (pred.resultPerEvent[$scope.fixtures[i].id] === undefined || pred.resultPerEvent[$scope.fixtures[i].id] ===null )  {
                             pred.resultPerEvent[$scope.fixtures[i].id] = {homeScore:'', awayScore:''};
                         }
-                    }
+                        var tmpObject = {};
+                        tmpObject.result = pred.resultPerEvent[$scope.fixtures[i].id];
+                        tmpObject.group = $scope.fixtures[i].group || '';
+                        tmpObject.order = $scope.fixtures[i].order || '';
+                        tmpObject.id = $scope.fixtures[i].id;
 
-                    $scope.predictions = pred;
+                        $scope.customPredictions.push(tmpObject);
+
+                    }
 
                 });
 

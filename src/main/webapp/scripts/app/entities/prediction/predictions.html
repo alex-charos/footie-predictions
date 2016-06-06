@@ -14,7 +14,7 @@
     </div>
     <br/>
     <div class="table-responsive">
-        
+
         <table class="jh-table table table-striped">
             <thead>
                 <tr>
@@ -27,31 +27,29 @@
                 </tr>
             </thead>
             <tbody>
-                <tr ng-repeat="(key, value) in   predictions.resultPerEvent">
-                    
-                    <td>{{getGroupByFixtureId(key)}}</td>
-                    <td> <img src = "{{getHomeFlagByFixtureId(key)}}" /></td>
-                    <td>{{getHomeByFixtureId(key)}}</td>
-                     <td> <img src = "{{getAwayFlagByFixtureId(key)}}" /></td>
-                    <td>{{getAwayByFixtureId(key)}}</td>
-                    
+                <tr ng-repeat="customPrediction in customPredictions | orderBy:['group','order']">
+                    <td>{{getGroupByFixtureId(customPrediction.id)}}</td>
+                    <td> <img src = "{{getHomeFlagByFixtureId(customPrediction.id)}}" /></td>
+                    <td>{{getHomeByFixtureId(customPrediction.id)}}</td>
+                    <td> <img src = "{{getAwayFlagByFixtureId(customPrediction.id)}}" /></td>
+                    <td>{{getAwayByFixtureId(customPrediction.id)}}</td>
+
                     <td>
                         <div ng-show="!editPredictions()">
-                            {{value.homeScore}}
-                        </div> 
-                        <div ng-show="editPredictions()"> 
-                            <input type="text" ng-model = "value.homeScore" /> 
+                            {{customPrediction.result.homeScore}}
                         </div>
-                    </td>
-                    <td>
-                        <div ng-show="!editPredictions()">
-                             {{value.awayScore}}
-                        </div> 
                         <div ng-show="editPredictions()">
-                            <input type="text" ng-model = "value.awayScore" /> 
+                            <input type="text" ng-model = "customPrediction.result.homeScore" />
                         </div>
                     </td>
-                    
+                    <td>
+                        <div ng-show="!editPredictions()">
+                            {{customPrediction.result.awayScore}}
+                        </div>
+                        <div ng-show="editPredictions()">
+                            <input type="text" ng-model = "customPrediction.result.awayScore" />
+                        </div>
+                    </td>
                 </tr>
             </tbody>
         </table>

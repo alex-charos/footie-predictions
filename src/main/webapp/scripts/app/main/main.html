@@ -1,4 +1,4 @@
-<div ng-cloak>
+<div ng-cloak ng-if="false">
     <div class="row">
         <div class="col-md-4">
            <img src="https://upload.wikimedia.org/wikipedia/en/thumb/f/f1/UEFA_Euro_2016_Logo.svg/200px-UEFA_Euro_2016_Logo.svg.png" />
@@ -9,38 +9,17 @@
         <table class="jh-table table table-striped">
             <thead>
                 <tr>
-                    <th colspan=2><span>User</span></th>
-                    <th><span>Points</span></th>
-                    <th><span>Correct Scores</span></th>
-                    <th><span>Correct Results</span></th>
-
+                    <th ><span>Event</span></th>
+                    <th ><span>Result</span></th>
+                    <th ng-repeat="prediction in predictions"><span>{{prediction.username}}</span></th>
                     <th></th>
                 </tr>
             </thead>
             <tbody>
-                <tr ng-repeat="prediction in predictions | orderBy:['-points','-correctScores', '-correctResults']">
-                    <td>{{prediction.username}}</td>
-                    <td> <img src="{{avatar}}" width="40px;" height="40px;"/></td>
-                    <td>{{prediction.points}}</td>
-                    <td>{{prediction.correctScores}}</td>
-                    <td>{{prediction.correctResults}}</td>
-                </tr>
-            </tbody>
-        </table>
-
-        <table>
-            <thead>
-                <tr>
-                    <th><span>Score</span></th>
-                    <th ng-repeat="prediction in predictions | orderBy:['-points','-correctScores', '-correctResults']"></th>
-                </tr>
-            </thead>
-            <tbody>
-                <tr ng-repeat="fixture in fixtures">
-                    <td>{{prediction.username}}</td>
-                    <td>{{prediction.points}}</td>
-                    <td>{{prediction.correctScores}}</td>
-                    <td>{{prediction.correctResults}}</td>
+                <tr ng-repeat="editedPrediction in editedPredictions | orderBy:['group','order']">
+                    <td>{{editedPrediction.home}} - {{editedPrediction.away}}</td>
+                    <td> - </td>
+                    <td ng-repeat="prediction in editedPrediction.predictions">{{prediction}}</td>
                 </tr>
             </tbody>
         </table>
@@ -48,3 +27,19 @@
         </div>
     </div>
 </div>
+
+<div ng-cloak ng-if="true">
+    <div class="row">
+        <div class="col-md-4">
+            <img src="https://upload.wikimedia.org/wikipedia/en/thumb/f/f1/UEFA_Euro_2016_Logo.svg/200px-UEFA_Euro_2016_Logo.svg.png" />
+        </div>
+        <div class="col-md-8">
+            Wait until 10/6/2016 :)
+            Check <a href="http://www.uefaeuro2016live.org/euro-2016-opening-ceremony-live-streaming/" target="_blank">live streaming</a> for opening ceremony.
+
+            Go to predictions page and make your predicitons
+        </div>
+    </div>
+</div>
+
+

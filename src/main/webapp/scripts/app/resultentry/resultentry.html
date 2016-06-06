@@ -1,15 +1,17 @@
 <div>
     <h2>Result Entry</h2>
     <jh-alert></jh-alert>
-   
+
     <br/>
 
     <div class="table-responsive">
-        
+
         <table class="jh-table table table-striped">
             <thead>
                 <tr>
-                    
+
+                    <th><span>Group</span></th>
+                    <th><span>Order</span></th>
                     <th><span>Home</span></th>
                     <th><span>Away</span></th>
                     <th><span>Home Score</span></th>
@@ -18,14 +20,15 @@
                 </tr>
             </thead>
             <tbody>
-                <tr ng-repeat="f in fixtures">
-                    
-                    <td>{{f.home}}</td>
-                    <td>{{f.away}}</td>
-                    
-                    <td> <input type="text" ng-model = "f.homeGoals" /></td>
-                    <td> <input type="text" ng-model = "f.awayGoals" /></td>
-                     <td> <input type="button" ng-click= "updateResult(f.id, f.homeGoals, f.awayGoals)" value = "save" /></td>
+                <tr ng-repeat="fixture in fixtures | orderBy:['group','order']">
+
+                    <td> {{fixture.group}}</td>
+                    <td> {{fixture.order}}</td>
+                    <td>{{fixture.home}}</td>
+                    <td>{{fixture.away}}</td>
+                    <td> <input type="text" ng-model = "fixture.homeGoals" /></td>
+                    <td> <input type="text" ng-model = "fixture.awayGoals" /></td>
+                     <td> <input type="button" ng-click= "updateResult(fixture.id, fixture.homeGoals, fixture.awayGoals)" value = "save" /></td>
                 </tr>
             </tbody>
         </table>
