@@ -9,7 +9,7 @@ angular.module('footierepoApp')
 
         $scope.getid = function(){
             Principal.identity().then(function(data) {
-                
+
                 $scope.username = data.login;
                 $scope.loadAll();
 
@@ -35,6 +35,14 @@ angular.module('footierepoApp')
                         pred = {username:$scope.username};
                     }
 
+                    $scope.fixtures.sort(function(a,b) {
+                        if(a.group != b.group){
+                            return a.group > b.group;
+                        }else{
+                            return a.order < b.order;
+                        }
+                    });
+
                     for (var i =0; i< $scope.fixtures.length; i++) {
                         if (pred.resultPerEvent === null || pred.resultPerEvent === undefined) {
                             pred.resultPerEvent = {};
@@ -45,14 +53,16 @@ angular.module('footierepoApp')
                     }
 
                     $scope.predictions = pred;
-                   
+
                 });
+
+
 
 
 
             });
         };
-        
+
         $scope.getGroupByFixtureId = function(id) {
              for (var i =0; i< $scope.fixtures.length; i++) {
                 if ($scope.fixtures[i].id === id) {

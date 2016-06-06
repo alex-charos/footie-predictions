@@ -6,7 +6,7 @@
             <div class="col-xs-4 no-padding-left">
                 <button class="btn btn-primary" ui-sref="fixture.new" >
                     <span class="glyphicon glyphicon-plus"></span>
-                    <span 
+                    <span
                        >Create new Fixture
                     </span>
                 </button>
@@ -18,36 +18,30 @@
         <table class="jh-table table table-striped">
             <thead>
                 <tr>
-                    <th><span>ID</span></th>
-                    <th><span>Home</span></th>
-                    <th><span>Away</span></th>
-                    <th><span>HomeGoals</span></th>
-                    <th><span>AwayGoals</span></th>
+                    <th colspan="2"><span>Home</span></th>
+                    <th colspan="2"><span>Away</span></th>
                     <th><span>HasResult</span></th>
                     <th><span>Result</span></th>
                     <th><span>Group</span></th>
-                    <th><span>HomeFlag</span></th>
-                    <th><span>AwayFlag</span></th>
+                    <th><span>Order</span></th>
                     <th></th>
                 </tr>
             </thead>
             <tbody>
-                <tr ng-repeat="fixture in fixtures track by fixture.id">
-                    <td><a ui-sref="fixture.detail({id:fixture.id})">{{fixture.id}}</a></td>
+                <tr ng-repeat="fixture in fixtures | orderBy:['group','order']">
                     <td>{{fixture.home}}</td>
+                    <td><img src ="{{fixture.homeFlag}}" width="30px;" height="20px;"/></td>
                     <td>{{fixture.away}}</td>
-                    <td>{{fixture.homeGoals}}</td>
-                    <td>{{fixture.awayGoals}}</td>
+                    <td><img src ="{{fixture.awayFlag}}" width="30px;" height="20px;"/></td>
                     <td>{{fixture.hasResult}}</td>
                     <td>{{fixture.result}}</td>
                     <td>{{fixture.group}}</td>
-                    <td>{{fixture.homeFlag}}</td>
-                    <td>{{fixture.awayFlag}}</td>
+                    <td>{{fixture.order}}</td>
                     <td class="text-right">
                         <div class="btn-group flex-btn-group-container">
                             <button type="submit"
                                     ui-sref="fixture.detail({id:fixture.id})"
-                                    class="btn btn-info btn-sm"> 
+                                    class="btn btn-info btn-sm">
                                 <span class="glyphicon glyphicon-eye-open"></span>
                                 <span class="hidden-xs hidden-sm"></span>
                             </button>
@@ -59,7 +53,7 @@
                             </button>
                             <button type="submit"
                                     ui-sref="fixture.delete({id:fixture.id})"
-                                    class="btn btn-danger btn-sm">                                    
+                                    class="btn btn-danger btn-sm">
                                 <span class="glyphicon glyphicon-remove-circle"></span>
                                 <span class="hidden-xs hidden-sm"></span>
                             </button>

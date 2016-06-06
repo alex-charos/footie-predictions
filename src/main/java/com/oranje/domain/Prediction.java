@@ -20,19 +20,22 @@ public class Prediction implements Serializable {
 
     @Field("username")
     private String username;
-    
+
     @Field("points")
     private Integer points;
-    
+
     @Field("correct_scores")
     private Integer correctScores;
-    
+
     @Field("correct_results")
     private Integer correctResults;
-    
+
+    @Field("avatar")
+    private String avatar;
+
     private Map<String,HomeAwayScore> resultPerEvent;
-    
-    
+
+
     public String getId() {
         return id;
     }
@@ -44,7 +47,7 @@ public class Prediction implements Serializable {
     public String getUsername() {
         return username;
     }
-    
+
     public void setUsername(String username) {
         this.username = username;
     }
@@ -55,7 +58,7 @@ public class Prediction implements Serializable {
     	}
         return points;
     }
-    
+
     public void setPoints(Integer points) {
         this.points = points;
     }
@@ -66,7 +69,7 @@ public class Prediction implements Serializable {
     	}
         return correctScores;
     }
-    
+
     public void setCorrectScores(Integer correctScores) {
         this.correctScores = correctScores;
     }
@@ -77,7 +80,7 @@ public class Prediction implements Serializable {
     	}
         return correctResults;
     }
-    
+
     public void setCorrectResults(Integer correctResults) {
         this.correctResults = correctResults;
     }
@@ -120,4 +123,13 @@ public class Prediction implements Serializable {
 	public void setResultPerEvent(Map<String,HomeAwayScore> resultPerEvent) {
 		this.resultPerEvent = resultPerEvent;
 	}
+
+	public String getAvatar() {
+        return avatar;
+    }
+
+    public void setAvatar(String avatar) {
+        this.avatar = avatar;
+    }
+
 }

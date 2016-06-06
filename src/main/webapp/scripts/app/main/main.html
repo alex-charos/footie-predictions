@@ -13,14 +13,30 @@
                     <th><span>Points</span></th>
                     <th><span>Correct Scores</span></th>
                     <th><span>Correct Results</span></th>
-                     
+
                     <th></th>
                 </tr>
             </thead>
             <tbody>
                 <tr ng-repeat="prediction in predictions | orderBy:['-points','-correctScores', '-correctResults']">
-                   
-                    <td> <img src="{{getAvatarByUsername( prediction.username)}}" /></td>
+                    <td>{{prediction.username}}</td>
+                    <td> <img src="{{avatar}}" width="40px;" height="40px;"/></td>
+                    <td>{{prediction.points}}</td>
+                    <td>{{prediction.correctScores}}</td>
+                    <td>{{prediction.correctResults}}</td>
+                </tr>
+            </tbody>
+        </table>
+
+        <table>
+            <thead>
+                <tr>
+                    <th><span>Score</span></th>
+                    <th ng-repeat="prediction in predictions | orderBy:['-points','-correctScores', '-correctResults']"></th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr ng-repeat="fixture in fixtures">
                     <td>{{prediction.username}}</td>
                     <td>{{prediction.points}}</td>
                     <td>{{prediction.correctScores}}</td>
