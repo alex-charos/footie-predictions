@@ -18,9 +18,9 @@
         <table class="jh-table table table-striped">
             <thead>
                 <tr>
-                    
-                    <th><span>Home</span></th>
-                    <th><span>Away</span></th>
+                    <th><span>Group</span></th>
+                    <th colspan=2><span>Home</span></th>
+                    <th colspan=2><span>Away</span></th>
                     <th><span>Home Prediction</span></th>
                     <th><span>Away Prediction</span></th>
                     <th></th>
@@ -29,7 +29,10 @@
             <tbody>
                 <tr ng-repeat="(key, value) in   predictions.resultPerEvent">
                     
+                    <td>{{getGroupByFixtureId(key)}}</td>
+                    <td> <img src = "{{getHomeFlagByFixtureId(key)}}" /></td>
                     <td>{{getHomeByFixtureId(key)}}</td>
+                     <td> <img src = "{{getAwayFlagByFixtureId(key)}}" /></td>
                     <td>{{getAwayByFixtureId(key)}}</td>
                     
                     <td>

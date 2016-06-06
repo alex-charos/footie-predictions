@@ -8,7 +8,7 @@
         <table class="jh-table table table-striped">
             <thead>
                 <tr>
-                    <th><span>User</span></th>
+                    <th colspan=2><span>User</span></th>
                     <th><span>Points</span></th>
                     <th><span>Correct Scores</span></th>
                     <th><span>Correct Results</span></th>
@@ -19,6 +19,7 @@
             <tbody>
                 <tr ng-repeat="prediction in predictions | orderBy:['-points','-correctScores', '-correctResults']">
                    
+                    <td>{{prediction.username}}</td>
                     <td>{{prediction.username}}</td>
                     <td>{{prediction.points}}</td>
                     <td>{{prediction.correctScores}}</td>

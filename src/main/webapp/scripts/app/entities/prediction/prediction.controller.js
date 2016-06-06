@@ -53,7 +53,34 @@ angular.module('footierepoApp')
             });
         };
         
+        $scope.getGroupByFixtureId = function(id) {
+             for (var i =0; i< $scope.fixtures.length; i++) {
+                if ($scope.fixtures[i].id === id) {
+                    return $scope.fixtures[i].group;
+                }
+              }
 
+              return "n/a";
+
+        }
+        $scope.getHomeFlagByFixtureId = function(id){
+              for (var i =0; i< $scope.fixtures.length; i++) {
+                if ($scope.fixtures[i].id === id) {
+                    return $scope.fixtures[i].homeFlag;
+                }
+              }
+
+              return "n/a";
+        }
+         $scope.getAwayFlagByFixtureId = function(id){
+              for (var i =0; i< $scope.fixtures.length; i++) {
+                if ($scope.fixtures[i].id === id) {
+                    return $scope.fixtures[i].awayFlag;
+                }
+              }
+
+              return "n/a";
+        }
         $scope.getHomeByFixtureId = function(id){
               for (var i =0; i< $scope.fixtures.length; i++) {
                 if ($scope.fixtures[i].id === id) {

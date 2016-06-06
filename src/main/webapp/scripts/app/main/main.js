@@ -7,7 +7,7 @@ angular.module('footierepoApp')
                 parent: 'site',
                 url: '/',
                 data: {
-                    authorities: []
+                 authorities: ['ROLE_USER']
                 },
                 views: {
                     'content@': {
