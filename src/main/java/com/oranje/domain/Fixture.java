@@ -44,6 +44,9 @@ public class Fixture implements Serializable {
     @Field("away_flag")
     private String awayFlag;
     
+    private Integer order;
+    
+    
     public String getId() {
         return id;
     }
@@ -159,4 +162,12 @@ public class Fixture implements Serializable {
             ", awayFlag='" + awayFlag + "'" +
             '}';
     }
+
+	public Integer getOrder() {
+		return order;
+	}
+
+	public void setOrder(Integer order) {
+		this.order = order;
+	}
 }
