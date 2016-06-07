@@ -1,34 +1,4 @@
-<div ng-cloak ng-if="false">
-    <div class="row">
-        <div class="col-md-4">
-           <img src="https://upload.wikimedia.org/wikipedia/en/thumb/f/f1/UEFA_Euro_2016_Logo.svg/200px-UEFA_Euro_2016_Logo.svg.png" />
-        </div>
-
-        <div class="col-md-8">
-            <div class="table-responsive">
-        <table class="jh-table table table-striped">
-            <thead>
-                <tr>
-                    <th ><span>Event</span></th>
-                    <th ><span>Result</span></th>
-                    <th ng-repeat="prediction in predictions"><span>{{prediction.username}}</span></th>
-                    <th></th>
-                </tr>
-            </thead>
-            <tbody>
-                <tr ng-repeat="editedPrediction in editedPredictions | orderBy:['group','order']">
-                    <td>{{editedPrediction.home}} - {{editedPrediction.away}}</td>
-                    <td> - </td>
-                    <td ng-repeat="prediction in editedPrediction.predictions">{{prediction}}</td>
-                </tr>
-            </tbody>
-        </table>
-    </div>
-        </div>
-    </div>
-</div>
-
-<div ng-cloak ng-if="true">
+<div ng-cloak>
     <div class="row">
         <div class="col-md-4">
             <img src="https://upload.wikimedia.org/wikipedia/en/thumb/f/f1/UEFA_Euro_2016_Logo.svg/200px-UEFA_Euro_2016_Logo.svg.png" />
@@ -38,6 +8,36 @@
             Check <a href="http://www.uefaeuro2016live.org/euro-2016-opening-ceremony-live-streaming/" target="_blank">live streaming</a> for opening ceremony.
 
             Go to predictions page and make your predicitons
+
+            <jh-alert></jh-alert>
+
+            <br/>
+
+            <div class="table-responsive">
+
+                <table class="jh-table table table-striped" border="1">
+                    <thead>
+                    <tr>
+
+                        <th><span>Name</span></th>
+                        <th><span>Avatar</span></th>
+                        <th><span>Points</span></th>
+                        <th><span>Correct scores</span></th>
+                        <th><span>Correct results</span></th>
+                    </tr>
+                    </thead>
+                    <tbody>
+                    <tr ng-repeat="prediction in predictions">
+
+                        <td> {{prediction.username}}</td>
+                        <td> <img src="assets/images/avatars/{{prediction.username}}.png" width="60px;" height="60px;"/></td>
+                        <td> {{prediction.points}}</td>
+                        <td>{{prediction.correctScores}}</td>
+                        <td>{{prediction.correctResults}}</td>
+                    </tr>
+                    </tbody>
+                </table>
+            </div>
         </div>
     </div>
 </div>

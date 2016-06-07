@@ -1,0 +1,52 @@
+<div ng-cloak ng-if="true">
+    <div class="row">
+        <div class="col-md-4">
+            <img src="assets/images/genericImages/1stPlace.jpg" width="260px;" height="280px;"/> <br/>
+            {{predictions[0].username}} --> {{predictions[0].points}}
+        </div>
+
+        <div class="col-md-4">
+            <img src="assets/images/genericImages/2ndPlace.png" height="230px;"/> <br/>
+            {{predictions[1].username}} --> {{predictions[1].points}}
+        </div>
+
+        <div class="col-md-4">
+            <img src="assets/images/genericImages/3rdPlace.png"/> <br/>
+            {{predictions[2].username}} --> {{predictions[2].points}}
+        </div>
+
+    </div>
+    <div class="row">
+        <div class="col-md-12">
+            <div class="table-responsive">
+                <table class="jh-table table table-striped" border="1">
+                    <thead>
+                    <tr>
+                        <th colspan="4" rowspan="2"><span>Event</span></th>
+                        <th rowspan="2"><span>Result</span></th>
+                        <th ng-repeat="prediction in predictions"><span>{{prediction.username}} </span><span>({{prediction.points}})</span></th>
+                    </tr>
+                    <tr>
+                        <th ng-repeat="prediction in predictions"><span> <img src="assets/images/avatars/{{prediction.username}}.png" width="60px;" heigth="60px;"/> </span></th>
+                    </tr>
+                    </thead>
+                    <tbody>
+                    <tr ng-repeat="editedPrediction in editedPredictions | orderBy:['group','order']">
+                        <td>{{editedPrediction.home}}</td>
+                        <td><img src ="{{editedPrediction.homeFlag}}" width="30px;" height="20px;"/></td>
+                        <td>{{editedPrediction.away}}</td>
+                        <td><img src ="{{editedPrediction.awayFlag}}" width="30px;" height="20px;"/></td></td>
+                        <td style="font-weight: bold;"> {{editedPrediction.result}} </td>
+                        <td ng-repeat="pred in editedPrediction.preds">
+                            <img ng-show="pred.color == 'green'" src="assets/images/genericImages/correct.png" width="20px;" height="30px;"/>
+                            <img ng-show="pred.color == 'blue'" src="assets/images/genericImages/semiCorrect.jpg" width="20px;" height="20px;"/>
+                            <img ng-show="pred.color == 'red'" src="assets/images/genericImages/wrong.png" width="20px;" height="30px;"/>
+                            <span ng-style="{'color':(pred.color?'{{pred.color}}':'#ccc')}">{{pred.score}}</span>
+                        </td>
+                    </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+</div>
