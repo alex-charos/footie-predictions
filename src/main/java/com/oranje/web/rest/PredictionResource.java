@@ -59,6 +59,10 @@ public class PredictionResource {
     public ResponseEntity<Prediction> updatePrediction(@RequestBody Prediction prediction, Principal principal) throws URISyntaxException {
         log.debug("REST request to update Prediction : {}", prediction);
         prediction.setUsername(principal.getName());
+        Prediction p = predictionRepository.findOneByUsername(prediction.getUsername());
+        if (p!=null) {
+        	prediction.setId(p.getId());
+        }
         if (prediction.getId() == null) {
             return createPrediction(prediction);
         }
