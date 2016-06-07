@@ -7,6 +7,8 @@ angular.module('footierepoApp')
         $scope.predictionsEnd = new Date("June 10, 2016 00:00:00");
         $scope.currentDate = new Date();
 
+        $scope.groups = [];
+
         $scope.getid = function(){
             Principal.identity().then(function(data) {
 
@@ -28,6 +30,43 @@ angular.module('footierepoApp')
         }
         $scope.loadAll = function() {
             Fixture.query(function(result) {
+
+                var tmpGroups = {};
+                //create groups start
+                for(var i=0;i<result.length;i++){
+                    if(tmpGroups[result[i].group] == undefined){
+                        tmpGroups[result[i].group] = {};
+                        tmpGroups[result[i].group].name = result[i].group;
+                        tmpGroups[result[i].group].teams = {};
+                    }else{
+                        if(tmpGroups[result[i].group].teams[result[i].home] == undefined){
+                            tmpGroups[result[i].group].teams[result[i].home] = {};
+                            tmpGroups[result[i].group].teams[result[i].home].name = result[i].home;
+                            tmpGroups[result[i].group].teams[result[i].home].points = 0;
+                            tmpGroups[result[i].group].teams[result[i].home].goals = 0;
+                            tmpGroups[result[i].group].teams[result[i].home].goalsa = 0;
+                        }
+                        if(tmpGroups[result[i].group].teams[result[i].away] == undefined){
+                            tmpGroups[result[i].group].teams[result[i].away] = {};
+                            tmpGroups[result[i].group].teams[result[i].away].name = result[i].away;
+                            tmpGroups[result[i].group].teams[result[i].away].points = 0;
+                            tmpGroups[result[i].group].teams[result[i].away].goals = 0;
+                            tmpGroups[result[i].group].teams[result[i].away].goalsa = 0;
+                        }
+                    }
+                }
+
+
+                for(var g in tmpGroups){
+                    var _teams = [];
+                    for(var t in tmpGroups[g].teams){
+                        _teams.push(tmpGroups[g].teams[t]);
+                    }
+                    tmpGroups[g].teams = _teams;
+                    $scope.groups.push(tmpGroups[g]);
+                }
+                //create groups end
+
                 $scope.fixtures = result;
                 Prediction.get({"username" :$scope.username}, function(result) {
                     var pred = result;
@@ -124,4 +163,25 @@ angular.module('footierepoApp')
                 id: null
             };
         };
+
+        $scope.fotis = function(fixtureKey , value){
+
+            var _home = $("#key_"+fixtureKey+"_home").val();
+            var _away = $("#key_"+fixtureKey+"_away").val();
+
+            if(!isNaN(_home) && !isNaN(_away) && _home!= undefined && _away!= undefined){
+                if(_home > _away){
+                    console.debug('_home > _away');
+                }else if(_home == _away){
+                    console.debug('_home == _away');
+                }else{
+                    console.debug('_home < _away');
+                }
+            }
+
+
+            var _group = this.getGroupByFixtureId(fixtureKey);
+            console.debug(_group);
+
+        }
     });

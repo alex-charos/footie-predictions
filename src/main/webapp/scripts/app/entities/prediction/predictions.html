@@ -11,49 +11,72 @@
                 </button>
             </div>
         </div>
-    </div>
+
     <br/>
-    <div class="table-responsive">
-        
+
+    <div class="table-responsive col-md-8">
+
         <table class="jh-table table table-striped">
             <thead>
+            <tr>
+                <th><span>Group</span></th>
+                <th colspan=2><span>Home</span></th>
+                <th colspan=2><span>Away</span></th>
+                <th><span>Home Prediction</span></th>
+                <th><span>Away Prediction</span></th>
+                <th></th>
+            </tr>
+            </thead>
+            <tbody>
+            <tr ng-repeat="(key, value) in   predictions.resultPerEvent">
+
+                <td>{{getGroupByFixtureId(key)}}</td>
+                <td> <img src = "{{getHomeFlagByFixtureId(key)}}" /></td>
+                <td>{{getHomeByFixtureId(key)}}</td>
+                <td> <img src = "{{getAwayFlagByFixtureId(key)}}" /></td>
+                <td>{{getAwayByFixtureId(key)}}</td>
+
+                <td>
+                    <div ng-show="!editPredictions()">
+                        {{value.homeScore}}
+                    </div>
+                    <div ng-show="editPredictions()">
+                        <input type="text" id="key_{{key}}_home" size="2" maxlength="2" ng-model = "value.homeScore" ng-keyup="fotis(key)" />
+                    </div>
+                </td>
+                <td>
+                    <div ng-show="!editPredictions()">
+                        {{value.awayScore}}
+                    </div>
+                    <div ng-show="editPredictions()">
+                        <input type="text" id="key_{{key}}_away" size="2" maxlength="2" ng-model = "value.awayScore" ng-keyup="fotis(key)" />
+                    </div>
+                </td>
+
+            </tr>
+            </tbody>
+        </table>
+    </div>
+
+    <div class="table-responsive col-md-4">
+        <table class="jh-table table table-striped" style="margin-bottom: 135px;" ng-repeat="group in groups | orderBy:['name']">
+            <thead>
                 <tr>
-                    <th><span>Group</span></th>
-                    <th colspan=2><span>Home</span></th>
-                    <th colspan=2><span>Away</span></th>
-                    <th><span>Home Prediction</span></th>
-                    <th><span>Away Prediction</span></th>
-                    <th></th>
+                    <th><span>Group {{group.name}}</span></th>
+                    <th><span>Points</span></th>
+                    <th><span>Goals</span></th>
+                    <th><span>Goals Against</span></th>
                 </tr>
             </thead>
             <tbody>
-                <tr ng-repeat="(key, value) in   predictions.resultPerEvent">
-                    
-                    <td>{{getGroupByFixtureId(key)}}</td>
-                    <td> <img src = "{{getHomeFlagByFixtureId(key)}}" /></td>
-                    <td>{{getHomeByFixtureId(key)}}</td>
-                     <td> <img src = "{{getAwayFlagByFixtureId(key)}}" /></td>
-                    <td>{{getAwayByFixtureId(key)}}</td>
-                    
-                    <td>
-                        <div ng-show="!editPredictions()">
-                            {{value.homeScore}}
-                        </div> 
-                        <div ng-show="editPredictions()"> 
-                            <input type="text" ng-model = "value.homeScore" /> 
-                        </div>
-                    </td>
-                    <td>
-                        <div ng-show="!editPredictions()">
-                             {{value.awayScore}}
-                        </div> 
-                        <div ng-show="editPredictions()">
-                            <input type="text" ng-model = "value.awayScore" /> 
-                        </div>
-                    </td>
-                    
+                <tr ng-repeat="team in group.teams | orderBy:['-points','-goals', 'goalsa']">
+                    <td><span>{{team.name}}</span></td>
+                    <td><span>{{team.points}}</span></td>
+                    <td><span>{{team.goals}}</span></td>
+                    <td><span>{{team.goalsa}}</span></td>
                 </tr>
             </tbody>
         </table>
+    </div>
     </div>
 </div>
