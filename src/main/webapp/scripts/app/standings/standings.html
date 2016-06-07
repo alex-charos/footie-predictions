@@ -38,9 +38,9 @@
                         <td><img src ="{{editedPrediction.awayFlag}}" width="30px;" height="20px;"/></td></td>
                         <td style="font-weight: bold;"> {{editedPrediction.result}} </td>
                         <td ng-repeat="pred in editedPrediction.preds">
-                            <img ng-show="pred.color == 'green'" src="assets/images/genericImages/correct.png" width="20px;" height="30px;"/>
-                            <img ng-show="pred.color == 'blue'" src="assets/images/genericImages/semiCorrect.jpg" width="20px;" height="20px;"/>
-                            <img ng-show="pred.color == 'red'" src="assets/images/genericImages/wrong.png" width="20px;" height="30px;"/>
+                            <img ng-show="pred.color == 'green'" src="assets/images/genericImages/correct.png" width="30px;" height="30px;"/>
+                            <img ng-show="pred.color == 'blue'" src="assets/images/genericImages/semiCorrect.jpg" width="30px;" height="30px;"/>
+                            <img ng-show="pred.color == 'red'" src="assets/images/genericImages/wrong.png" width="30px;" height="30px;"/>
                             <span ng-style="{'color':(pred.color?'{{pred.color}}':'#ccc')}">{{pred.score}}</span>
                         </td>
                     </tr>
