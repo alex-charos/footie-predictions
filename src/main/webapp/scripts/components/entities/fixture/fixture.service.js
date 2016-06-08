@@ -16,5 +16,10 @@ angular.module('footierepoApp')
                 method:'GET',
                 url: 'api/fixtures/update/result/:id'
             }
+            ,
+            'recalculateAll': {
+                method:'GET',
+                url: 'api/fixtures/update/result/all'
+            }
         });
     });
