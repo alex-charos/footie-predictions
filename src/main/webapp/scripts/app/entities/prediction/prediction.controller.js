@@ -164,9 +164,9 @@ angular.module('footierepoApp')
             };
         };
 
-        $scope.fotis = function(fixtureKey , value){
+        $scope.updateStandings = function(){
 
-            var teams = {};
+            var _teams = {};
 
             for (var i =0; i< $scope.fixtures.length; i++) {
                 var elmntH = $(".home_id_"+$scope.fixtures[i].id);
@@ -177,41 +177,41 @@ angular.module('footierepoApp')
                 var elmntAVal = $(".away_id_"+$scope.fixtures[i].id).val();
                 var elmntATeam = $(elmntA).attr("data-teamId");
 
-                if(teams[elmntHTeam] == undefined){
-                    teams[elmntHTeam] = {};
-                    teams[elmntHTeam].points = 0;
-                    teams[elmntHTeam].goals = 0;
-                    teams[elmntHTeam].goalsa = 0;
+                if(_teams[elmntHTeam] == undefined){
+                    _teams[elmntHTeam] = {};
+                    _teams[elmntHTeam].points = 0;
+                    _teams[elmntHTeam].goals = 0;
+                    _teams[elmntHTeam].goalsa = 0;
                 }
-                if(teams[elmntATeam] == undefined){
-                    teams[elmntATeam] = {};
-                    teams[elmntATeam].points = 0;
-                    teams[elmntATeam].goals = 0;
-                    teams[elmntATeam].goalsa = 0;
+                if(_teams[elmntATeam] == undefined){
+                    _teams[elmntATeam] = {};
+                    _teams[elmntATeam].points = 0;
+                    _teams[elmntATeam].goals = 0;
+                    _teams[elmntATeam].goalsa = 0;
                 }
 
                 if(!isNaN(elmntHVal) &&  !isNaN(elmntAVal) && elmntHVal != undefined && elmntAVal != undefined && elmntHVal != "" && elmntAVal != ""){
                     if(elmntHVal > elmntAVal){
-                        teams[elmntHTeam].points += 3;
+                        _teams[elmntHTeam].points += 3;
                     }else if(elmntHVal == elmntAVal){
-                        teams[elmntHTeam].points += 1;
-                        teams[elmntATeam].points += 1;
+                        _teams[elmntHTeam].points += 1;
+                        _teams[elmntATeam].points += 1;
                     }else {
                         teams[elmntATeam].points += 3;
                     }
-                    teams[elmntHTeam].goals += parseInt(elmntHVal , 10);
-                    teams[elmntHTeam].goalsa += parseInt(elmntAVal , 10);
-                    teams[elmntATeam].goals += parseInt(elmntAVal , 10);
-                    teams[elmntATeam].goalsa += parseInt(elmntHVal , 10);
+                    _teams[elmntHTeam].goals += parseInt(elmntHVal , 10);
+                    _teams[elmntHTeam].goalsa += parseInt(elmntAVal , 10);
+                    _teams[elmntATeam].goals += parseInt(elmntAVal , 10);
+                    _teams[elmntATeam].goalsa += parseInt(elmntHVal , 10);
                 }
 
             }
 
             for(var g in $scope.groups){
                 for(var t in $scope.groups[g].teams){
-                    $scope.groups[g].teams[t].points = teams[$scope.groups[g].teams[t].name].points;
-                    $scope.groups[g].teams[t].goals = teams[$scope.groups[g].teams[t].name].goals;
-                    $scope.groups[g].teams[t].goalsa = teams[$scope.groups[g].teams[t].name].goalsa;
+                    $scope.groups[g].teams[t].points = _teams[$scope.groups[g].teams[t].name].points;
+                    $scope.groups[g].teams[t].goals = _teams[$scope.groups[g].teams[t].name].goals;
+                    $scope.groups[g].teams[t].goalsa = _teams[$scope.groups[g].teams[t].name].goalsa;
                 }
             }
 
