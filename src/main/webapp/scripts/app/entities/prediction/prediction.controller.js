@@ -78,7 +78,7 @@ angular.module('footierepoApp')
                         if(a.group != b.group){
                             return a.group > b.group;
                         }else{
-                            return a.order < b.order;
+                            return a.order > b.order;
                         }
                     });
 
