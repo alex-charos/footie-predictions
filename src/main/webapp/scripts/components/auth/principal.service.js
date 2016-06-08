@@ -10,7 +10,6 @@ angular.module('footierepoApp')
                 return angular.isDefined(_identity);
             },
             isAuthenticated: function () {
-                console.log(_authenticated);
                 return _authenticated;
             },
             hasAuthority: function (authority) {
@@ -59,14 +58,14 @@ angular.module('footierepoApp')
                 // retrieve the identity data from the server, update the identity object, and then resolve.
                 Account.get().$promise
                     .then(function (account) {
-                        
+
                         _identity = account.data;
                         _authenticated = true;
                         deferred.resolve(_identity);
                         Tracker.connect();
                     })
                     .catch(function(e) {
-                        
+
                         _identity = null;
                         _authenticated = false;
                         deferred.resolve(_identity);
