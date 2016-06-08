@@ -41,7 +41,8 @@
                         {{value.homeScore}}
                     </div>
                     <div ng-show="editPredictions()">
-                        <input type="text" id="key_{{key}}_home" size="2" maxlength="2" ng-model = "value.homeScore" ng-keyup="fotis(key)" />
+                        <input type="text" id="key_{{key}}_home" size="2" data-teamId="{{getHomeByFixtureId(key)}}" class="group_{{getGroupByFixtureId(key)}} score homeScore home_id_{{key}}"
+                               maxlength="2" ng-model = "value.homeScore" ng-keyup="fotis(key)" />
                     </div>
                 </td>
                 <td>
@@ -49,7 +50,8 @@
                         {{value.awayScore}}
                     </div>
                     <div ng-show="editPredictions()">
-                        <input type="text" id="key_{{key}}_away" size="2" maxlength="2" ng-model = "value.awayScore" ng-keyup="fotis(key)" />
+                        <input type="text" id="key_{{key}}_away" size="2" data-teamId="{{getAwayByFixtureId(key)}}" class="group_{{getGroupByFixtureId(key)}} score awayScore away_id_{{key}}"
+                               maxlength="2" ng-model = "value.awayScore" ng-keyup="fotis(key)" />
                     </div>
                 </td>
 

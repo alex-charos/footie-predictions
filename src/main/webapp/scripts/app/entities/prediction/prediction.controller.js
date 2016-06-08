@@ -166,22 +166,54 @@ angular.module('footierepoApp')
 
         $scope.fotis = function(fixtureKey , value){
 
-            var _home = $("#key_"+fixtureKey+"_home").val();
-            var _away = $("#key_"+fixtureKey+"_away").val();
+            var teams = {};
 
-            if(!isNaN(_home) && !isNaN(_away) && _home!= undefined && _away!= undefined){
-                if(_home > _away){
-                    console.debug('_home > _away');
-                }else if(_home == _away){
-                    console.debug('_home == _away');
-                }else{
-                    console.debug('_home < _away');
+            for (var i =0; i< $scope.fixtures.length; i++) {
+                var elmntH = $(".home_id_"+$scope.fixtures[i].id);
+                var elmntHVal = $(".home_id_"+$scope.fixtures[i].id).val();
+                var elmntHTeam = $(elmntH).attr("data-teamId");
+
+                var elmntA = $(".away_id_"+$scope.fixtures[i].id);
+                var elmntAVal = $(".away_id_"+$scope.fixtures[i].id).val();
+                var elmntATeam = $(elmntA).attr("data-teamId");
+
+                if(teams[elmntHTeam] == undefined){
+                    teams[elmntHTeam] = {};
+                    teams[elmntHTeam].points = 0;
+                    teams[elmntHTeam].goals = 0;
+                    teams[elmntHTeam].goalsa = 0;
                 }
+                if(teams[elmntATeam] == undefined){
+                    teams[elmntATeam] = {};
+                    teams[elmntATeam].points = 0;
+                    teams[elmntATeam].goals = 0;
+                    teams[elmntATeam].goalsa = 0;
+                }
+
+                if(!isNaN(elmntHVal) &&  !isNaN(elmntAVal) && elmntHVal != undefined && elmntAVal != undefined && elmntHVal != "" && elmntAVal != ""){
+                    if(elmntHVal > elmntAVal){
+                        teams[elmntHTeam].points += 3;
+                    }else if(elmntHVal == elmntAVal){
+                        teams[elmntHTeam].points += 1;
+                        teams[elmntATeam].points += 1;
+                    }else {
+                        teams[elmntATeam].points += 3;
+                    }
+                    teams[elmntHTeam].goals += parseInt(elmntHVal , 10);
+                    teams[elmntHTeam].goalsa += parseInt(elmntAVal , 10);
+                    teams[elmntATeam].goals += parseInt(elmntAVal , 10);
+                    teams[elmntATeam].goalsa += parseInt(elmntHVal , 10);
+                }
+
             }
 
-
-            var _group = this.getGroupByFixtureId(fixtureKey);
-            console.debug(_group);
+            for(var g in $scope.groups){
+                for(var t in $scope.groups[g].teams){
+                    $scope.groups[g].teams[t].points = teams[$scope.groups[g].teams[t].name].points;
+                    $scope.groups[g].teams[t].goals = teams[$scope.groups[g].teams[t].name].goals;
+                    $scope.groups[g].teams[t].goalsa = teams[$scope.groups[g].teams[t].name].goalsa;
+                }
+            }
 
         }
     });
