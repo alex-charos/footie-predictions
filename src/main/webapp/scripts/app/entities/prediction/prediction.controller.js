@@ -197,7 +197,7 @@ angular.module('footierepoApp')
                         _teams[elmntHTeam].points += 1;
                         _teams[elmntATeam].points += 1;
                     }else {
-                        teams[elmntATeam].points += 3;
+                        _teams[elmntATeam].points += 3;
                     }
                     _teams[elmntHTeam].goals += parseInt(elmntHVal , 10);
                     _teams[elmntHTeam].goalsa += parseInt(elmntAVal , 10);
