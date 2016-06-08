@@ -103,70 +103,129 @@ public class FixtureResource {
 	public ResponseEntity<Fixture> updateFixtureResult(@PathVariable String id, @RequestParam String score) {
 
 		List<String> tmpStrArr = Arrays.asList(score.split("_"));
-
-		String result = "1";
-		Update update = new Update();
-		update.set("homeGoals", tmpStrArr.get(0));
-		update.set("awayGoals", tmpStrArr.get(1));
-		update.set("hasResult", true);
-
-		if (Integer.parseInt(tmpStrArr.get(0)) == Integer.parseInt(tmpStrArr.get(1))) {
-			result = "X";
-		} else if (Integer.parseInt(tmpStrArr.get(0)) < Integer.parseInt(tmpStrArr.get(1))) {
-			result = "2";
+		Integer homeScore = null;
+		Integer awayScore = null;
+		
+		if (tmpStrArr.size()>=2) {
+			homeScore = Integer.parseInt(tmpStrArr.get(0));
+			awayScore = Integer.parseInt(tmpStrArr.get(1));
 		}
-		update.set("result", result);
+		 
+		
 		Fixture f = fixtureRepository.findOne(id);
-		f.setHomeGoals(Integer.parseInt(tmpStrArr.get(0)));
-		f.setAwayGoals(Integer.parseInt(tmpStrArr.get(1)));
+		f.setHomeGoals(homeScore);
+		f.setAwayGoals(awayScore);
 
 		fixtureRepository.save(f);
 
-		updateScoreAndPoints(id, f.getHomeGoals(), f.getAwayGoals(), result);
+		updateScoreAndPoints(f);
 		return null;
 
 	}
+	@RequestMapping(value = "/fixtures/update/result/all", method = RequestMethod.GET, produces = MediaType.APPLICATION_JSON_VALUE)
+	@Timed
+	public ResponseEntity<Fixture> updateAllPoints() {
+		updateAllScoreAndPoints();
+		return null;
 
-	private void updateScoreAndPoints(String id, Integer home, Integer away, String result) {
+	}
+	
+	private void updateScoreAndPoints(Fixture f) {
 
-		List<Prediction> worldCupUserPredictions = predictionRepository.findAll();
+		List<Prediction> predictions = predictionRepository.findAll();
 
-		for (Prediction wcp : worldCupUserPredictions) {
+		for (Prediction p : predictions) {
+			 
+			HomeAwayScore has = p.getResultPerEvent().get(f.getId());
+			if (has!=null && has.getHomeScore()!=null && has.getAwayScore()!=null) {
+			 
+				
+				int points = getFixturePoints(f, has);
+				if (points == 10) {
+					p.setCorrectScores(p.getCorrectScores()+1);
+				} else if (points == 1) {
+					p.setCorrectResults(p.getCorrectResults()+1);
+					
+				}
+				 
+				p.setPoints(p.getPoints()+points);
+				 
+			}
+			
+			predictionRepository.save(p);	
+		}
+		
+		
+	}
+	
 
-			boolean hasChanges = false;
+	private void updateAllScoreAndPoints( ) {
 
-			HomeAwayScore has = wcp.getResultPerEvent().get(id);
+		List<Prediction> predictions = predictionRepository.findAll();
 
-			String tmpResult = "1";
-			if (has.getHomeScore() == has.getAwayScore()) {
-				tmpResult = "X";
+		for (Prediction p : predictions) {
+			int totalPoints = 0;
+			int totalCorrectScores = 0;
+			int totalCorrectResults = 0;
+			for (String id : p.getResultPerEvent().keySet()) {
+				HomeAwayScore has = p.getResultPerEvent().get(id);
+				Fixture f = fixtureRepository.findOne(id);
+				
+				int points = getFixturePoints(f, has);
+				if (points == 10) {
+					totalCorrectScores++;
+				} else if (points == 1) {
+					totalCorrectResults++;
+				}
+				totalPoints+=points;
+			}
+			
+			p.setPoints(totalPoints);
+			p.setCorrectResults(totalCorrectResults);
+			p.setCorrectScores(totalCorrectScores);
+			
+			predictionRepository.save(p);
+		}
+	}
+	
+	
+	private int getFixturePoints(Fixture f, HomeAwayScore has) {
+		int points = 0;
+		
+		
+		
+		if(has!=null && has.getHomeScore() !=null && has.getAwayScore()!=null && f.getHomeGoals() !=null && f.getAwayGoals() !=null) {
+			String predictedResult = null;
+
+			if (has.getHomeScore() > has.getAwayScore()) {
+				predictedResult = "1";
+			} else if (has.getHomeScore() == has.getAwayScore()) {
+				predictedResult = "X";
 			} else if (has.getHomeScore() < has.getAwayScore()) {
-				tmpResult = "2";
+				predictedResult = "2";
 			}
-
-			if (has.getHomeScore().equals(home) && has.getAwayScore().equals(away)) {
-
-				hasChanges = true;
-				Integer points = wcp.getPoints() + 10;
-				Integer correctScores = wcp.getCorrectScores() + 1;
-				wcp.setPoints(points);
-				wcp.setCorrectScores(correctScores);
-
-			} else if (tmpResult.equals(result)) {
-
-				hasChanges = true;
-				Integer points = wcp.getPoints() + 1;
-				Integer correctResults = wcp.getCorrectResults() + 1;
-
-				wcp.setPoints(points);
-				wcp.setCorrectResults(correctResults);
-
+			
+			String actualResult = null;
+			if (f.getHomeGoals() > f.getAwayGoals()) {
+				actualResult = "1";
+			} else if (f.getHomeGoals() == f.getAwayGoals()) {
+				actualResult = "X";
+			} else if (f.getHomeGoals() < f.getAwayGoals()) {
+				actualResult = "2";
 			}
-
-			if (hasChanges) {
-				predictionRepository.save(wcp);
+			
+			if (has.getHomeScore().equals(f.getHomeGoals()) && has.getAwayScore().equals(f.getAwayGoals())) {
+				points = 10;
+			} else if (predictedResult.equals(actualResult)) {
+				points = 1;
 			}
 		}
+		
+		
+		return points;
+
+		 
+		
 	}
 
 	/**

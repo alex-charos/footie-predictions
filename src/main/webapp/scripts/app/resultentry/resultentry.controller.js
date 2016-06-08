@@ -23,6 +23,10 @@ angular.module('footierepoApp')
             Fixture.updateResult({'id':id, 'score':home+'_'+away});
 
         }
+
+        $scope.recalculateAll = function(){
+                Fixture.recalculateAll();            
+        }
         
         
     });
