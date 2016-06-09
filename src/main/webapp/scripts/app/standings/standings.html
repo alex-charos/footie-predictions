@@ -21,20 +21,20 @@
                 <table class="jh-table table table-striped" border="1">
                     <thead>
                     <tr>
-                        <th colspan="4" rowspan="2"><span>Event</span></th>
+                        <th colspan="2" rowspan="2"><span>Event</span></th>
                         <th rowspan="2"><span>Result</span></th>
                         <th ng-repeat="prediction in predictions"><span>{{prediction.username}} </span><span>({{prediction.points}})</span></th>
                     </tr>
                     <tr>
-                        <th ng-repeat="prediction in predictions"><span> <img src="assets/images/avatars/{{prediction.username}}.png" width="60px;" heigth="60px;"/> </span></th>
+                        <th ng-repeat="prediction in predictions"><img src="assets/images/avatars/{{prediction.username}}.png" width="60px;" height="60px;"/></th>
                     </tr>
                     </thead>
                     <tbody>
                     <tr ng-repeat="editedPrediction in editedPredictions | orderBy:['group','order']">
-                        <td>{{editedPrediction.home}}</td>
-                        <td><img src ="{{editedPrediction.homeFlag}}" width="30px;" height="20px;"/></td>
-                        <td>{{editedPrediction.away}}</td>
-                        <td><img src ="{{editedPrediction.awayFlag}}" width="30px;" height="20px;"/></td></td>
+                        <!--td>{{editedPrediction.home}}</td-->
+                        <td><img src ="{{editedPrediction.homeFlag}}" width="30px;" height="20px;" alt="{{editedPrediction.home}}"/></td>
+                        <!--td>{{editedPrediction.away}}</td-->
+                        <td><img src ="{{editedPrediction.awayFlag}}" width="30px;" height="20px;" alt="{{editedPrediction.away}}"/></td></td>
                         <td style="font-weight: bold;"> {{editedPrediction.result}} </td>
                         <td ng-repeat="pred in editedPrediction.preds">
                             <img ng-show="pred.color == 'green'" src="assets/images/genericImages/correct.png" width="30px;" height="30px;"/>
