@@ -1,7 +1,5 @@
 package com.oranje.web.rest;
 
-import static org.junit.Assert.assertTrue;
-
 import java.net.URI;
 import java.net.URISyntaxException;
 import java.security.Principal;
@@ -68,7 +66,7 @@ public class PredictionResource {
     @Timed
     public ResponseEntity<Prediction> updatePrediction(@RequestBody Prediction prediction, Principal principal) throws URISyntaxException {
     	
-		SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd'T'HH:mm:ss");
+ 		SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd'T'HH:mm:ss");
 
 		Date rawDate;
 		try {

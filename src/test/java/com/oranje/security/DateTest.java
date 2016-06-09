@@ -1,7 +1,5 @@
 package com.oranje.security;
 
-import static org.junit.Assert.assertTrue;
-
 import java.sql.Timestamp;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
