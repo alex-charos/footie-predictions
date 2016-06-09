@@ -4,7 +4,7 @@ angular.module('footierepoApp')
     .controller('PredictionController', function ($scope, $state, Prediction, Fixture, Principal) {
 
 
-        $scope.predictionsEnd = new Date("June 10, 2016 00:00:00");
+        $scope.predictionsEnd = new Date("June 11, 2016 12:00:00");
         $scope.currentDate = new Date();
 
         $scope.groups = [];
@@ -26,7 +26,9 @@ angular.module('footierepoApp')
             return $scope.currentDate <= $scope.predictionsEnd;
         }
         $scope.save = function(){
-            Prediction.update($scope.predictions);
+            Prediction.update($scope.predictions, 
+                                function(data) {alert(data)}
+                                ,function(data) {alert(data.data.message)});
         }
         $scope.loadAll = function() {
             Fixture.query(function(result) {

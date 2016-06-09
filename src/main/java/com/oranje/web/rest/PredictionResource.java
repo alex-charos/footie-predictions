@@ -1,23 +1,33 @@
 package com.oranje.web.rest;
 
+import static org.junit.Assert.assertTrue;
+
+import java.net.URI;
+import java.net.URISyntaxException;
+import java.security.Principal;
+import java.sql.Timestamp;
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
+import java.util.Date;
+import java.util.List;
+import java.util.TimeZone;
+
+import javax.inject.Inject;
+
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
+import org.springframework.http.MediaType;
+import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.RequestBody;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.RestController;
+
 import com.codahale.metrics.annotation.Timed;
 import com.oranje.domain.Prediction;
 import com.oranje.repository.PredictionRepository;
 import com.oranje.web.rest.util.HeaderUtil;
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
-import org.springframework.http.HttpHeaders;
-import org.springframework.http.HttpStatus;
-import org.springframework.http.MediaType;
-import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.*;
-
-import javax.inject.Inject;
-import java.net.URI;
-import java.net.URISyntaxException;
-import java.security.Principal;
-import java.util.List;
-import java.util.Optional;
 
 /**
  * REST controller for managing Prediction.
@@ -57,6 +67,31 @@ public class PredictionResource {
         produces = MediaType.APPLICATION_JSON_VALUE)
     @Timed
     public ResponseEntity<Prediction> updatePrediction(@RequestBody Prediction prediction, Principal principal) throws URISyntaxException {
+    	
+		SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd'T'HH:mm:ss");
+
+		Date rawDate;
+		try {
+			rawDate = sdf.parse("2016-06-10T12:00:00");
+		
+
+		Timestamp ts = new Timestamp(rawDate.getTime()
+				+ (TimeZone.getDefault().getRawOffset() - TimeZone.getTimeZone("Europe/Athens").getRawOffset()));
+		
+		
+		Timestamp now = new Timestamp( new Date().getTime());
+		
+		if (now.after(ts)) {
+			throw new RuntimeException("DeadLine has passed!");
+		}
+		
+		} catch (ParseException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		
+    	 
+    	
         log.debug("REST request to update Prediction : {}", prediction);
         prediction.setUsername(principal.getName());
         Prediction p = predictionRepository.findOneByUsername(prediction.getUsername());
