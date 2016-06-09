@@ -32,9 +32,9 @@
                     <tbody>
                     <tr ng-repeat="editedPrediction in editedPredictions | orderBy:['group','order']">
                         <!--td>{{editedPrediction.home}}</td-->
-                        <td><img src ="{{editedPrediction.homeFlag}}" width="30px;" height="20px;" alt="{{editedPrediction.home}}"/></td>
+                        <td><img src ="{{editedPrediction.homeFlag}}" width="30px;" height="20px;" title="{{editedPrediction.home}}"/></td>
                         <!--td>{{editedPrediction.away}}</td-->
-                        <td><img src ="{{editedPrediction.awayFlag}}" width="30px;" height="20px;" alt="{{editedPrediction.away}}"/></td></td>
+                        <td><img src ="{{editedPrediction.awayFlag}}" width="30px;" height="20px;" title="{{editedPrediction.away}}"/></td></td>
                         <td style="font-weight: bold;"> {{editedPrediction.result}} </td>
                         <td ng-repeat="pred in editedPrediction.preds">
                             <img ng-show="pred.color == 'green'" src="assets/images/genericImages/correct.png" width="30px;" height="30px;"/>
