@@ -59,7 +59,7 @@ function editData(fixtures , predictions){
         for(var j=0;j<numberOfPredictions;j++){
             var tmpPrediction = {};
             tmpPrediction.score = '';
-            if(predictions[j].resultPerEvent[fixtures[i].id].homeScore != null && predictions[j].resultPerEvent[fixtures[i].id].awayScore != null){
+            if(predictions[j].resultPerEvent[fixtures[i].id] && predictions[j].resultPerEvent[fixtures[i].id].homeScore != null && predictions[j].resultPerEvent[fixtures[i].id].awayScore != null){
                 tmpPrediction.score = predictions[j].resultPerEvent[fixtures[i].id].homeScore+'-'+predictions[j].resultPerEvent[fixtures[i].id].awayScore;
             }
             tmpPrediction.color = 'black';
