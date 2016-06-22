@@ -172,7 +172,7 @@ public class FixtureResource {
 				Fixture f = fixtureRepository.findOne(id);
 				
 				int points = getFixturePoints(f, has);
-				if (points == 10) {
+				if (points >= 10) {
 					totalCorrectScores++;
 				} else if (points == 1) {
 					totalCorrectResults++;
@@ -216,6 +216,12 @@ public class FixtureResource {
 			
 			if (has.getHomeScore().equals(f.getHomeGoals()) && has.getAwayScore().equals(f.getAwayGoals())) {
 				points = 10;
+				if (f.getGroup()!=null && f.getGroup().equalsIgnoreCase("Final")) {
+					points=15;
+				}
+				if (f.getGroup()!=null && f.getGroup().equalsIgnoreCase("Semifinal")) {
+					points=12;
+				}
 			} else if (predictedResult.equals(actualResult)) {
 				points = 1;
 			}
