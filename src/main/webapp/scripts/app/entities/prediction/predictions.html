@@ -62,8 +62,8 @@
                 </td>
                 <td ng-show="getGroupByFixtureId(key) == 'G'">
                     <div>
-                        <input type="text" id="key_{{key}}_home" size="2" data-teamId="{{getHomeByFixtureId(key)}}" class="home_id_{{key}}"
-                               maxlength="2" ng-model = "value.homeScore" ng-keyup="updateStandings()" />
+                        <input type="text" id="key_{{key}}_away" size="2" data-teamId="{{getAwayByFixtureId(key)}}" class="away_id_{{key}}"
+                               maxlength="2" ng-model = "value.awayScore" ng-keyup="updateStandings()" />
                     </div>
                 </td>
 
