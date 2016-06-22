@@ -35,10 +35,10 @@ import com.oranje.web.rest.util.HeaderUtil;
 public class PredictionResource {
 
     private final Logger log = LoggerFactory.getLogger(PredictionResource.class);
-        
+
     @Inject
     private PredictionRepository predictionRepository;
-    
+
     /**
      * POST  /predictions -> Create a new prediction.
      */
@@ -65,31 +65,31 @@ public class PredictionResource {
         produces = MediaType.APPLICATION_JSON_VALUE)
     @Timed
     public ResponseEntity<Prediction> updatePrediction(@RequestBody Prediction prediction, Principal principal) throws URISyntaxException {
-    	
+
  		SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd'T'HH:mm:ss");
 
 		Date rawDate;
 		try {
 			rawDate = sdf.parse("2016-06-10T12:00:00");
-		
+
 
 		Timestamp ts = new Timestamp(rawDate.getTime()
 				+ (TimeZone.getDefault().getRawOffset() - TimeZone.getTimeZone("Europe/Athens").getRawOffset()));
-		
-		
+
+
 		Timestamp now = new Timestamp( new Date().getTime());
-		
+
 		if (now.after(ts)) {
-			throw new RuntimeException("DeadLine has passed!");
+			//throw new RuntimeException("DeadLine has passed!");
 		}
-		
+
 		} catch (ParseException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
-		
-    	 
-    	
+
+
+
         log.debug("REST request to update Prediction : {}", prediction);
         prediction.setUsername(principal.getName());
         Prediction p = predictionRepository.findOneByUsername(prediction.getUsername());
@@ -99,7 +99,7 @@ public class PredictionResource {
         if (prediction.getId() == null) {
             return createPrediction(prediction);
         }
-       
+
         Prediction result = predictionRepository.save(prediction);
         return ResponseEntity.ok()
             .headers(HeaderUtil.createEntityUpdateAlert("prediction", prediction.getId().toString()))
@@ -118,10 +118,10 @@ public class PredictionResource {
         return predictionRepository.findAll();
             }
 
-    
-    
-     
-    
+
+
+
+
     /**
      * GET  /predictions/:username -> get the "username" prediction.
      */
@@ -132,14 +132,14 @@ public class PredictionResource {
     public  Prediction  getPrediction(@PathVariable String username) {
         log.debug("REST request to get Prediction : {}", username);
         Prediction p = predictionRepository.findOneByUsername(username);
-        
+
         if (p==null) {
         	p = new Prediction();
         }
         return p;
     }
 
-    
+
     /**
      * DELETE  /predictions/:id -> delete the "id" prediction.
      */
