@@ -4,11 +4,11 @@
     <div class="container-fluid">
         <div class="row">
             <div class="col-xs-4 no-padding-left">
-                <!--button class="btn btn-primary" ng-click="save()">
+                <button class="btn btn-primary" ng-click="save()">
                     <span class="glyphicon glyphicon-ok"></span>
                     <span>Save Predictions
                     </span>
-                </button-->
+                </button>
             </div>
         </div>
 
@@ -36,11 +36,17 @@
                 <td> <img src = "{{getAwayFlagByFixtureId(key)}}" /></td>
                 <td>{{getAwayByFixtureId(key)}}</td>
 
-                <td>
+                <td ng-show="getGroupByFixtureId(key) != 'G' ">
                     <div ng-show="!editPredictions()">
                         {{value.homeScore}}
                     </div>
                     <div ng-show="editPredictions()">
+                        <input type="text" id="key_{{key}}_home" size="2" data-teamId="{{getHomeByFixtureId(key)}}" class="home_id_{{key}}"
+                               maxlength="2" ng-model = "value.homeScore" ng-keyup="updateStandings()" />
+                    </div>
+                </td>
+                <td ng-show="getGroupByFixtureId(key) == 'G' ">
+                    <div>
                         <input type="text" id="key_{{key}}_home" size="2" data-teamId="{{getHomeByFixtureId(key)}}" class="home_id_{{key}}"
                                maxlength="2" ng-model = "value.homeScore" ng-keyup="updateStandings()" />
                     </div>
