@@ -216,10 +216,10 @@ public class FixtureResource {
 			
 			if (has.getHomeScore().equals(f.getHomeGoals()) && has.getAwayScore().equals(f.getAwayGoals())) {
 				points = 10;
-				if (f.getGroup()!=null && f.getGroup().equalsIgnoreCase("Final")) {
+				if ("Final".equalsIgnoreCase(f.getGroup()) ) {
 					points=15;
 				}
-				if (f.getGroup()!=null && f.getGroup().equalsIgnoreCase("Semifinal")) {
+				if ( "Semifinal".equalsIgnoreCase(f.getGroup())) {
 					points=12;
 				}
 			} else if (predictedResult.equals(actualResult)) {
