@@ -63,7 +63,7 @@ function editData(fixtures , predictions){
                 tmpPrediction.score = predictions[j].resultPerEvent[fixtures[i].id].homeScore+'-'+predictions[j].resultPerEvent[fixtures[i].id].awayScore;
             }
             tmpPrediction.color = 'black';
-            if(customFixture.result !=''){
+            if(customFixture.result !='' && predictions[j].resultPerEvent[fixtures[i].id]){
                 tmpPrediction.color = 'red';
                 if(customFixture.result == tmpPrediction.score){
                     tmpPrediction.color = 'green';
