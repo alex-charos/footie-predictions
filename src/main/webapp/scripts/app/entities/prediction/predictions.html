@@ -3,7 +3,7 @@
     <jh-alert></jh-alert>
     <div class="container-fluid">
 
-        <!--div class="row">
+        <div class="row">
             <div class="col-xs-4 no-padding-left">
                 <button class="btn btn-primary" ng-click="save()">
                     <span class="glyphicon glyphicon-ok"></span>
@@ -11,7 +11,7 @@
                     </span>
                 </button>
             </div>
-        </div-->
+        </div>
 
     <br/>
 
@@ -37,7 +37,7 @@
                 <td> <img src = "{{getAwayFlagByFixtureId(key)}}" /></td>
                 <td>{{getAwayByFixtureId(key)}}</td>
 
-                <td ng-show="getGroupByFixtureId(key) != 'Final'">
+                <!--td ng-show="getGroupByFixtureId(key) != 'Final'">
                     <div ng-show="!editPredictions()">
                         {{value.homeScore}}
                     </div>
@@ -45,14 +45,14 @@
                         <input type="text" id="key_{{key}}_home" size="2" data-teamId="{{getHomeByFixtureId(key)}}" class="home_id_{{key}}"
                                maxlength="2" ng-model = "value.homeScore" ng-keyup="updateStandings()" />
                     </div>
-                </td>
-                <td ng-show="getGroupByFixtureId(key) == 'Final'">
+                </td-->
+                <td>
                     <div>
                         <input type="text" id="key_{{key}}_home" size="2" data-teamId="{{getHomeByFixtureId(key)}}" class="home_id_{{key}}"
                                maxlength="2" ng-model = "value.homeScore" ng-keyup="updateStandings()" />
                     </div>
                 </td>
-                <td ng-show="getGroupByFixtureId(key) != 'Final'">
+                <!--td ng-show="getGroupByFixtureId(key) != 'Final'">
                     <div ng-show="!editPredictions()">
                         {{value.awayScore}}
                     </div>
@@ -60,8 +60,8 @@
                         <input type="text" id="key_{{key}}_away" size="2" data-teamId="{{getAwayByFixtureId(key)}}" class="away_id_{{key}}"
                                maxlength="2" ng-model = "value.awayScore" ng-keyup="updateStandings()" />
                     </div>
-                </td>
-                <td ng-show="getGroupByFixtureId(key) == 'Final'">
+                </td-->
+                <td>
                     <div>
                         <input type="text" id="key_{{key}}_away" size="2" data-teamId="{{getAwayByFixtureId(key)}}" class="away_id_{{key}}"
                                maxlength="2" ng-model = "value.awayScore" ng-keyup="updateStandings()" />
@@ -73,7 +73,7 @@
         </table>
     </div>
 
-    <!--div class="table-responsive col-md-4">
+    <div class="table-responsive col-md-4">
         <table class="jh-table table table-striped" style="margin-bottom: 135px;" ng-repeat="group in groups | orderBy:['name']">
             <thead>
                 <tr>
@@ -92,6 +92,6 @@
                 </tr>
             </tbody>
         </table>
-    </div -->
+    </div>
     </div>
 </div>
