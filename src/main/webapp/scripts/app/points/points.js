@@ -12,7 +12,7 @@ angular.module('footierepoApp')
                 },
                 views: {
                     'content@': {
-                        templateUrl: 'scripts/app/standings/points.html',
+                        templateUrl: 'scripts/app/points/points.html',
                         controller: 'PointsController'
                     }
                 },
