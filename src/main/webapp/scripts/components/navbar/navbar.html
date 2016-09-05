@@ -17,6 +17,8 @@
                         <span class="hidden-sm">Home</span>
                     </a>
                 </li>
+                <li ui-sref-active="active" ><a ui-sref="points" data-toggle="collapse" data-target=".navbar-collapse.in"><span class="glyphicon glyphicon-list-alt"></span>
+                    &#xA0;<span > Points</span></a></li>
                 <li ui-sref-active="active" ><a ui-sref="standings" data-toggle="collapse" data-target=".navbar-collapse.in"><span class="glyphicon glyphicon-list-alt"></span>
                     &#xA0;<span > Standings</span></a></li>
                 <li ui-sref-active="active" ><a ui-sref="prediction" data-toggle="collapse" data-target=".navbar-collapse.in"><span class="glyphicon glyphicon-screenshot"></span>
@@ -30,9 +32,6 @@
                             &#xA0;<span>Change Password</span></a></li>
                 <li ui-sref-active="active" ng-switch-when="true"><a href="" ng-click="logout()" id="logout" data-toggle="collapse" data-target=".navbar-collapse.in"><span class="glyphicon glyphicon-log-out"></span>
                             &#xA0;<span>Sign out</span></a></li>
-
-
-
                 </li>
 
             </ul>
