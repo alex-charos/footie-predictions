@@ -74,6 +74,7 @@
                     <div>
                         {{value.homeScore}}
                     </div>
+                </td><td ng-show="getGroupByFixtureId(key) != 'A-2' && getGroupByFixtureId(key) != 'B-2' && getGroupByFixtureId(key) != 'C-2' && getGroupByFixtureId(key) != 'D-2' && getGroupByFixtureId(key) != 'E-2' && getGroupByFixtureId(key) != 'F-2' && getGroupByFixtureId(key) != 'G-2' && getGroupByFixtureId(key) != 'H-2'">
                     <div>
                         {{value.awayScore}}
                     </div>
@@ -83,6 +84,7 @@
                         <input type="text" id="key_{{key}}_home" size="2" data-teamId="{{getHomeByFixtureId(key)}}" class="home_id_{{key}}"
                                maxlength="2" ng-model = "value.homeScore"/>
                     </div>
+                </td><td ng-show="getGroupByFixtureId(key) == 'A-2' || getGroupByFixtureId(key) == 'B-2' || getGroupByFixtureId(key) == 'C-2' || getGroupByFixtureId(key) == 'D-2' || getGroupByFixtureId(key) == 'E-2' || getGroupByFixtureId(key) == 'F-2' || getGroupByFixtureId(key) == 'G-2' || getGroupByFixtureId(key) == 'H-2'">
                     <div>
                         <input type="text" id="key_{{key}}_away" size="2" data-teamId="{{getAwayByFixtureId(key)}}" class="away_id_{{key}}"
                                maxlength="2" ng-model = "value.awayScore" />
