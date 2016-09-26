@@ -3,7 +3,7 @@
     <jh-alert></jh-alert>
     <div class="container-fluid">
 
-        <!--div class="row">
+        <div class="row">
             <div class="col-xs-4 no-padding-left">
                 <button class="btn btn-primary" ng-click="save()">
                     <span class="glyphicon glyphicon-ok"></span>
@@ -11,7 +11,7 @@
                     </span>
                 </button>
             </div>
-        </div-->
+        </div>
 
     <br/>
 
@@ -37,7 +37,7 @@
                 <td> <img src = "{{getAwayFlagByFixtureId(key)}}" /></td>
                 <td>{{getAwayByFixtureId(key)}}</td>
 
-                <!--td ng-show="getGroupByFixtureId(key) != 'Final'">
+                <!--td ng-show="getGroupByFixtureId(key) != 'A-2' && getGroupByFixtureId(key) != 'B-2' && getGroupByFixtureId(key) != 'C-2' && getGroupByFixtureId(key) != 'D-2' && getGroupByFixtureId(key) != 'E-2' && getGroupByFixtureId(key) != 'F-2' && getGroupByFixtureId(key) != 'G-2' && getGroupByFixtureId(key) != 'H-2'">
                     <div ng-show="!editPredictions()">
                         {{value.homeScore}}
                     </div>
@@ -45,8 +45,8 @@
                         <input type="text" id="key_{{key}}_home" size="2" data-teamId="{{getHomeByFixtureId(key)}}" class="home_id_{{key}}"
                                maxlength="2" ng-model = "value.homeScore" ng-keyup="updateStandings()" />
                     </div>
-                </td-->
-                <td>
+                </td>
+                <td ng-show="getGroupByFixtureId(key) == 'A-2' || getGroupByFixtureId(key) == 'B-2' || getGroupByFixtureId(key) == 'C-2' || getGroupByFixtureId(key) == 'D-2' || getGroupByFixtureId(key) == 'E-2' || getGroupByFixtureId(key) == 'F-2' || getGroupByFixtureId(key) == 'G-2' || getGroupByFixtureId(key) == 'H-2'">
                     <div>
                         <input type="text" id="key_{{key}}_home" size="2" data-teamId="{{getHomeByFixtureId(key)}}" class="home_id_{{key}}"
                                maxlength="2" ng-model = "value.homeScore" ng-keyup="updateStandings()" />
@@ -61,13 +61,33 @@
                                maxlength="2" ng-model = "value.awayScore" ng-keyup="updateStandings()" />
                     </div>
                 </td-->
-                <td>
+                <!--td>
                     <div>
                         <input type="text" id="key_{{key}}_away" size="2" data-teamId="{{getAwayByFixtureId(key)}}" class="away_id_{{key}}"
                                maxlength="2" ng-model = "value.awayScore" ng-keyup="updateStandings()" />
                     </div>
-                </td>
+                </td-->
 
+
+
+                <td ng-show="getGroupByFixtureId(key) != 'A-2' && getGroupByFixtureId(key) != 'B-2' && getGroupByFixtureId(key) != 'C-2' && getGroupByFixtureId(key) != 'D-2' && getGroupByFixtureId(key) != 'E-2' && getGroupByFixtureId(key) != 'F-2' && getGroupByFixtureId(key) != 'G-2' && getGroupByFixtureId(key) != 'H-2'">
+                    <div>
+                        {{value.homeScore}}
+                    </div>
+                    <div>
+                        {{value.awayScore}}
+                    </div>
+                </td>
+                <td ng-show="getGroupByFixtureId(key) == 'A-2' || getGroupByFixtureId(key) == 'B-2' || getGroupByFixtureId(key) == 'C-2' || getGroupByFixtureId(key) == 'D-2' || getGroupByFixtureId(key) == 'E-2' || getGroupByFixtureId(key) == 'F-2' || getGroupByFixtureId(key) == 'G-2' || getGroupByFixtureId(key) == 'H-2'">
+                    <div>
+                        <input type="text" id="key_{{key}}_home" size="2" data-teamId="{{getHomeByFixtureId(key)}}" class="home_id_{{key}}"
+                               maxlength="2" ng-model = "value.homeScore"/>
+                    </div>
+                    <div>
+                        <input type="text" id="key_{{key}}_away" size="2" data-teamId="{{getAwayByFixtureId(key)}}" class="away_id_{{key}}"
+                               maxlength="2" ng-model = "value.awayScore" />
+                    </div>
+                </td>
             </tr>
             </tbody>
         </table>
