@@ -22,6 +22,8 @@ angular.module('footierepoApp')
                         }else{
                             if(a.username == "berg") return -11;
                             if(b.username == "berg") return 1;
+                             if(a.username == "alexlfc") return -11;
+                            if(b.username == "alexlfc") return 1;
                             return 1;
                         }
                     });
