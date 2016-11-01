@@ -1,0 +1,51 @@
+<div ng-cloak ng-if="true">
+    <div class="row">
+        <div class="col-md-12">
+            <table border="1" style="margin-bottom: 80px;margin-left: 15%;">
+                <thead>
+                <th width="300px;"><img src="assets/images/genericImages/2ndPlace.png" style="margin-left:20px;"  width="250px;" height="260px;"/></th>
+                <th width="300px;"><img src="assets/images/genericImages/1stPlace.jpg" style="margin-left:20px;" width="260px;" height="280px;"/></th>
+                <th width="300px;"><img src="assets/images/genericImages/3rdPlace.png" style="margin-left:20px;" width="240px;" height="240px;"/></th>
+                </thead>
+                <tbody>
+                <td><img src="assets/images/avatars/{{predictions[1].username}}.png" width="60px;" height="60px;"/><span style="margin-left:110px;font-size: 200%;color:silver;" >{{predictions[1].username}}</span></td>
+                <td><img src="assets/images/avatars/{{predictions[0].username}}.png" width="60px;" height="60px;"/><span style="margin-left:100px;font-size: 250%;color:gold;" >{{predictions[0].username}}</span></td>
+                <td><img src="assets/images/avatars/{{predictions[2].username}}.png" width="60px;" height="60px;"/><span style="margin-left:120px;font-size: 150%;color:#8c7853;" >{{predictions[2].username}}</span></td>
+                </tbody>
+            </table>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-md-12">
+            <div class="table-responsive">
+                <table class="jh-table table table-striped" border="1">
+                    <thead>
+                    <tr>
+                        <th colspan="2" rowspan="2"><span>Event</span></th>
+                        <th rowspan="2"><span>Result</span></th>
+                        <th ng-repeat="prediction in predictions"><span>{{prediction.username}} </span><span>({{prediction.points}})</span></th>
+                    </tr>
+                    <tr>
+                        <th ng-repeat="prediction in predictions"><img src="assets/images/avatars/{{prediction.username}}.png" width="60px;" height="60px;"/></th>
+                    </tr>
+                    </thead>
+                    <tbody>
+                    <tr ng-repeat="editedPrediction in editedPredictions | orderBy:['group','order']">
+
+                        <td><img src ="{{editedPrediction.homeFlag}}" width="40px;" height="40px;" title="{{editedPrediction.home}}"/></td>
+
+                        <td><img src ="{{editedPrediction.awayFlag}}" width="40px;" height="40px;" title="{{editedPrediction.away}}"/></td>
+                        <td style="font-weight: bold;"> {{editedPrediction.result}} </td>
+                        <td ng-repeat="pred in editedPrediction.preds">
+                            <img ng-show="pred.color == 'green'" src="assets/images/genericImages/correct.png" width="30px;" height="30px;"/>
+                            <img ng-show="pred.color == 'blue'" src="assets/images/genericImages/semiCorrect.jpg" width="30px;" height="30px;"/>
+                            <img ng-show="pred.color == 'red'" src="assets/images/genericImages/wrong.png" width="30px;" height="30px;"/>
+                            <span ng-style="{'color':(pred.color?'{{pred.color}}':'#ccc')}">{{pred.score}}</span>
+                        </td>
+                    </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+</div>
