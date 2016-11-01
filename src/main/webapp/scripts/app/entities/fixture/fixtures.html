@@ -20,6 +20,7 @@
                 <tr>
                     <th colspan="2"><span>Home</span></th>
                     <th colspan="2"><span>Away</span></th>
+                    <th><span>KO</span></th>
                     <th><span>HasResult</span></th>
                     <th><span>Result</span></th>
                     <th><span>Group</span></th>
@@ -28,11 +29,12 @@
                 </tr>
             </thead>
             <tbody>
-                <tr ng-repeat="fixture in fixtures | orderBy:['group','order']">
+                <tr ng-repeat="fixture in fixtures | orderBy:['kickOff','group','order']">
                     <td>{{fixture.home}}</td>
                     <td><img src ="{{fixture.homeFlag}}" width="30px;" height="20px;"/></td>
                     <td>{{fixture.away}}</td>
                     <td><img src ="{{fixture.awayFlag}}" width="30px;" height="20px;"/></td>
+                    <td>{{fixture.kickOff | date:'dd/MM/yyyy HH:mm'}}</td>
                     <td>{{fixture.hasResult}}</td>
                     <td>{{fixture.result}}</td>
                     <td>{{fixture.group}}</td>

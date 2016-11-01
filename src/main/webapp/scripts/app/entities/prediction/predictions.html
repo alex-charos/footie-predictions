@@ -70,21 +70,23 @@
 
 
 
-                <td ng-show="getGroupByFixtureId(key) != 'A-3' && getGroupByFixtureId(key) != 'B-3' && getGroupByFixtureId(key) != 'C-3' && getGroupByFixtureId(key) != 'D-3' && getGroupByFixtureId(key) != 'E-3' && getGroupByFixtureId(key) != 'F-3' && getGroupByFixtureId(key) != 'G-3' && getGroupByFixtureId(key) != 'H-3'">
+                <td ng-show="!isFixtureInFuture(key)">
                     <div>
                         {{value.homeScore}}
                     </div>
-                </td><td ng-show="getGroupByFixtureId(key) != 'A-3' && getGroupByFixtureId(key) != 'B-3' && getGroupByFixtureId(key) != 'C-3' && getGroupByFixtureId(key) != 'D-3' && getGroupByFixtureId(key) != 'E-3' && getGroupByFixtureId(key) != 'F-3' && getGroupByFixtureId(key) != 'G-3' && getGroupByFixtureId(key) != 'H-3'">
+                </td>
+                <td ng-show="!isFixtureInFuture(key)">
                     <div>
                         {{value.awayScore}}
                     </div>
                 </td>
-                <td ng-show="getGroupByFixtureId(key) == 'A-3' || getGroupByFixtureId(key) == 'B-3' || getGroupByFixtureId(key) == 'C-3' || getGroupByFixtureId(key) == 'D-3' || getGroupByFixtureId(key) == 'E-3' || getGroupByFixtureId(key) == 'F-3' || getGroupByFixtureId(key) == 'G-3' || getGroupByFixtureId(key) == 'H-3'">
+                <td ng-show="isFixtureInFuture(key)">
                     <div>
                         <input type="text" id="key_{{key}}_home" size="2" data-teamId="{{getHomeByFixtureId(key)}}" class="home_id_{{key}}"
                                maxlength="2" ng-model = "value.homeScore"/>
                     </div>
-                </td><td ng-show="getGroupByFixtureId(key) == 'A-3' || getGroupByFixtureId(key) == 'B-3' || getGroupByFixtureId(key) == 'C-3' || getGroupByFixtureId(key) == 'D-3' || getGroupByFixtureId(key) == 'E-3' || getGroupByFixtureId(key) == 'F-3' || getGroupByFixtureId(key) == 'G-3' || getGroupByFixtureId(key) == 'H-3'">
+                </td>
+                <td ng-show="isFixtureInFuture(key)">
                     <div>
                         <input type="text" id="key_{{key}}_away" size="2" data-teamId="{{getAwayByFixtureId(key)}}" class="away_id_{{key}}"
                                maxlength="2" ng-model = "value.awayScore" />

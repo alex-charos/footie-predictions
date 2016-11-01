@@ -1,0 +1,13 @@
+{
+    "relationships": [],
+    "fields": [
+        {
+            "fieldId": 1,
+            "fieldName": "displayStandings",
+            "fieldType": "Boolean"
+        }
+    ],
+    "dto": "no",
+    "service": "no",
+    "pagination": "no"
+}

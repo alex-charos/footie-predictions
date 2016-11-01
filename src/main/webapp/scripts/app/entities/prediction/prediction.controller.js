@@ -26,9 +26,7 @@ angular.module('footierepoApp')
             return $scope.currentDate <= $scope.predictionsEnd;
         }
         $scope.save = function(){
-            Prediction.update($scope.predictions, 
-                                function(data) {alert(data)}
-                                ,function(data) {alert(data.data.message)});
+            Prediction.update($scope.predictions);
         }
         $scope.loadAll = function() {
             Fixture.query(function(result) {
@@ -165,6 +163,23 @@ angular.module('footierepoApp')
                 id: null
             };
         };
+
+        $scope.isFixtureInFuture = function(id) {
+            
+             for (var i =0; i< $scope.fixtures.length; i++) {
+                if ($scope.fixtures[i].id === id) {
+                    console.log(id);
+                    if (new Date(Date.parse($scope.fixtures[i].kickOff)) > new Date()) {
+                        return true;
+                    } else {
+                        return false;
+                    }
+                    
+                }
+              }
+
+              return true;
+        }
 
         $scope.updateStandings = function(){
 
