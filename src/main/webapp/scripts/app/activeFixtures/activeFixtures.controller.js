@@ -28,7 +28,7 @@ angular.module('footierepoApp')
                         }
                     });
                     $scope.predictions = predData;
-                    $scope.editedPredictions = editData(data , predData);
+                    $scope.editedPredictionsActive = editData(data , predData);
                 })
 
             });
