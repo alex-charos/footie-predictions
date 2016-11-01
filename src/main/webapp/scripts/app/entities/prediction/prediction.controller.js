@@ -24,12 +24,12 @@ angular.module('footierepoApp')
         $scope.editPredictions = function() {
 
             return $scope.currentDate <= $scope.predictionsEnd;
-        }
+        };
         $scope.save = function(){
-            Prediction.update($scope.predictions, 
+            Prediction.update($scope.predictions,
                                 function(data) {alert(data)}
                                 ,function(data) {alert(data.data.message)});
-        }
+        };
         $scope.loadAll = function() {
             Fixture.query(function(result) {
 
@@ -78,9 +78,9 @@ angular.module('footierepoApp')
 
                     $scope.fixtures.sort(function(a,b) {
                         if(a.group != b.group){
-                            return a.group > b.group;
+                            return (a.group > b.group) ? -1 : 1;
                         }else{
-                            return a.order > b.order;
+                            return (a.order > b.order) ? -1 : 1;
                         }
                     });
 
