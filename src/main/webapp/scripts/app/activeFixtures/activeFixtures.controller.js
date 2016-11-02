@@ -28,7 +28,7 @@ angular.module('footierepoApp')
                         }
                     });
                     $scope.predictions = predData;
-                    $scope.editedPredictionsActive = editData(data , predData);
+                    $scope.editedPredictionsActive = editData(editDataForActiveFixtures, predData);
                 })
 
             });
@@ -37,8 +37,7 @@ angular.module('footierepoApp')
     });
 
 
-
-function editData(fixtures , predictions){
+function editDataForActiveFixtures(fixtures, predictions){
 
     var customFixtures = [];
     var numberOfPredictions = predictions.length;
