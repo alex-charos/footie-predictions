@@ -6,7 +6,7 @@ angular.module('footierepoApp')
 
 
         $scope.predictions = [];
-        $scope.users = []
+        $scope.users = [];
         Prediction.query(function(data) {
 
             data.sort(function(a,b) {
