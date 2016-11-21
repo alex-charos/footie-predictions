@@ -31,9 +31,9 @@
             <tbody>
                 <tr ng-repeat="fixture in fixtures | orderBy:['kickOff','group','order']">
                     <td>{{fixture.home}}</td>
-                    <td><img src ="{{fixture.homeFlag}}" width="30px;" height="20px;"/></td>
+                    <td><img src ="{{fixture.homeFlag}}" height="30px;"/></td>
                     <td>{{fixture.away}}</td>
-                    <td><img src ="{{fixture.awayFlag}}" width="30px;" height="20px;"/></td>
+                    <td><img src ="{{fixture.awayFlag}}" height="30px;"/></td>
                     <td>{{fixture.kickOff | date:'dd/MM/yyyy HH:mm'}}</td>
                     <td>{{fixture.hasResult}}</td>
                     <td>{{fixture.result}}</td>
