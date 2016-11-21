@@ -19,6 +19,8 @@ public class Fixture implements Serializable {
 
     @Id
     private String id;
+    
+    private String fdId;
 
     @Field("home")
     private String home;
@@ -184,5 +186,13 @@ public class Fixture implements Serializable {
 
 	public void setKickOff(ZonedDateTime kickOff) {
 		this.kickOff = kickOff;
+	}
+
+	public String getFdId() {
+		return fdId;
+	}
+
+	public void setFdId(String fdId) {
+		this.fdId = fdId;
 	}
 }
