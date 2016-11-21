@@ -3,14 +3,14 @@
     <jh-alert></jh-alert>
     <div class="container-fluid">
 
-        <div class="row"><!--
-            <div class="col-xs-4 no-padding-left">
+        <div class="row">
+            <div class="col-xs-5 no-padding-left">
                 <button class="btn btn-primary" ng-click="save()">
                     <span class="glyphicon glyphicon-ok"></span>
                     <span>Save Predictions
                     </span>
                 </button>
-            </div>-->
+            </div>
         </div>
 
     <br/>
@@ -70,21 +70,21 @@
 
 
 
-                <td ng-show="getGroupByFixtureId(key) != 'A-4' && getGroupByFixtureId(key) != 'B-4' && getGroupByFixtureId(key) != 'C-4' && getGroupByFixtureId(key) != 'D-4' && getGroupByFixtureId(key) != 'E-4' && getGroupByFixtureId(key) != 'F-4' && getGroupByFixtureId(key) != 'G-4' && getGroupByFixtureId(key) != 'H-4'">
+                <td ng-show="getGroupByFixtureId(key) != 'A-5' && getGroupByFixtureId(key) != 'B-5' && getGroupByFixtureId(key) != 'C-5' && getGroupByFixtureId(key) != 'D-5' && getGroupByFixtureId(key) != 'E-5' && getGroupByFixtureId(key) != 'F-5' && getGroupByFixtureId(key) != 'G-5' && getGroupByFixtureId(key) != 'H-5'">
                     <div>
                         {{value.homeScore}}
                     </div>
-                </td><td ng-show="getGroupByFixtureId(key) != 'A-4' && getGroupByFixtureId(key) != 'B-4' && getGroupByFixtureId(key) != 'C-4' && getGroupByFixtureId(key) != 'D-4' && getGroupByFixtureId(key) != 'E-4' && getGroupByFixtureId(key) != 'F-4' && getGroupByFixtureId(key) != 'G-4' && getGroupByFixtureId(key) != 'H-4'">
+                </td><td ng-show="getGroupByFixtureId(key) != 'A-5' && getGroupByFixtureId(key) != 'B-5' && getGroupByFixtureId(key) != 'C-5' && getGroupByFixtureId(key) != 'D-5' && getGroupByFixtureId(key) != 'E-5' && getGroupByFixtureId(key) != 'F-5' && getGroupByFixtureId(key) != 'G-5' && getGroupByFixtureId(key) != 'H-5'">
                     <div>
                         {{value.awayScore}}
                     </div>
                 </td>
-                <td ng-show="getGroupByFixtureId(key) == 'A-4' || getGroupByFixtureId(key) == 'B-4' || getGroupByFixtureId(key) == 'C-4' || getGroupByFixtureId(key) == 'D-4' || getGroupByFixtureId(key) == 'E-4' || getGroupByFixtureId(key) == 'F-4' || getGroupByFixtureId(key) == 'G-4' || getGroupByFixtureId(key) == 'H-4'">
+                <td ng-show="getGroupByFixtureId(key) == 'A-5' || getGroupByFixtureId(key) == 'B-5' || getGroupByFixtureId(key) == 'C-5' || getGroupByFixtureId(key) == 'D-5' || getGroupByFixtureId(key) == 'E-5' || getGroupByFixtureId(key) == 'F-5' || getGroupByFixtureId(key) == 'G-5' || getGroupByFixtureId(key) == 'H-5'">
                     <div>
                         <input type="text" id="key_{{key}}_home" size="2" data-teamId="{{getHomeByFixtureId(key)}}" class="home_id_{{key}}"
                                maxlength="2" ng-model = "value.homeScore"/>
                     </div>
-                </td><td ng-show="getGroupByFixtureId(key) == 'A-4' || getGroupByFixtureId(key) == 'B-4' || getGroupByFixtureId(key) == 'C-4' || getGroupByFixtureId(key) == 'D-4' || getGroupByFixtureId(key) == 'E-4' || getGroupByFixtureId(key) == 'F-4' || getGroupByFixtureId(key) == 'G-4' || getGroupByFixtureId(key) == 'H-4'">
+                </td><td ng-show="getGroupByFixtureId(key) == 'A-5' || getGroupByFixtureId(key) == 'B-5' || getGroupByFixtureId(key) == 'C-5' || getGroupByFixtureId(key) == 'D-5' || getGroupByFixtureId(key) == 'E-5' || getGroupByFixtureId(key) == 'F-5' || getGroupByFixtureId(key) == 'G-5' || getGroupByFixtureId(key) == 'H-5'">
                     <div>
                         <input type="text" id="key_{{key}}_away" size="2" data-teamId="{{getAwayByFixtureId(key)}}" class="away_id_{{key}}"
                                maxlength="2" ng-model = "value.awayScore" />
@@ -95,7 +95,7 @@
         </table>
     </div>
 
-    <!--div class="table-responsive col-md-4">
+    <!--div class="table-responsive col-md-5">
         <table class="jh-table table table-striped" style="margin-bottom: 135px;" ng-repeat="group in groups | orderBy:['name']">
             <thead>
                 <tr>

@@ -45,7 +45,7 @@ function editDataForActiveFixtures(fixtures, predictions){
 
     for(var i=0;i<fixtures.length;i++){
 
-        if(fixtures[i].group == 'A-4' || fixtures[i].group == 'B-4' || fixtures[i].group == 'C-4' || fixtures[i].group == 'D-4' || fixtures[i].group == 'E-4' || fixtures[i].group == 'F-4' || fixtures[i].group == 'H-4' || fixtures[i].group == 'G-4') {
+        if(fixtures[i].group == 'A-5' || fixtures[i].group == 'B-5' || fixtures[i].group == 'C-5' || fixtures[i].group == 'D-5' || fixtures[i].group == 'E-5' || fixtures[i].group == 'F-5' || fixtures[i].group == 'H-5' || fixtures[i].group == 'G-5') {
 
             var customFixture = {};
             customFixture.home = fixtures[i].home;
