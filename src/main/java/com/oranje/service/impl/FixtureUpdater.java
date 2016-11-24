@@ -18,6 +18,7 @@ import org.springframework.http.HttpEntity;
 import org.springframework.http.HttpHeaders;
 import org.springframework.http.HttpMethod;
 import org.springframework.http.ResponseEntity;
+import org.springframework.scheduling.annotation.Scheduled;
 import org.springframework.stereotype.Service;
 import org.springframework.web.client.RestTemplate;
 
@@ -37,7 +38,7 @@ public class FixtureUpdater {
     
     @Autowired
     FeedService feedService;
-    
+    @Scheduled(cron="0 0 20 * * FRI")
 	public void retrieveFixtures() {
 		List<Fixture> storedFixtures = fixtureRepository.findAll();
 		
