@@ -17,13 +17,6 @@ spring:
             enabled: false
         livereload:
             enabled: false
-    data:
-        mongodb:
-            host: {MONGO_HOST}
-            port: {MONGO_PORT}
-            database: {MONGO_DB}
-            username: {MONGO_USERNAME}
-            password: {MONGO_PASSWORD}
     mail:
         host: localhost
         port: 25
