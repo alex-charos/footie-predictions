@@ -5,7 +5,6 @@
 # ===================================================================
 
 # ===================================================================
-# Standard Spring Boot properties.
 # Full reference is available at:
 # http://docs.spring.io/spring-boot/docs/current/reference/html/common-application-properties.html
 # ===================================================================
@@ -20,8 +19,11 @@ spring:
             enabled: false
     data:
         mongodb:
-            uri: mongodb://localhost:27017
-            database: footierepo
+            host: ds023213.mlab.com
+            port: 23213
+            database: predictions
+            username: oranje
+            password: oranje123!
     mail:
         host: localhost
         port: 25
