@@ -19,11 +19,11 @@ spring:
             enabled: false
     data:
         mongodb:
-            host: ds023213.mlab.com
-            port: 23213
-            database: predictions
-            username: oranje
-            password: oranje123!
+            host: {MONGO_HOST}
+            port: {MONGO_PORT}
+            database: {MONGO_DB}
+            username: {MONGO_USERNAME}
+            password: {MONGO_PASSWORD}
     mail:
         host: localhost
         port: 25
