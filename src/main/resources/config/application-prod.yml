@@ -44,6 +44,8 @@ jhipster:
             timeToLiveInDays: 31
     mail: # specific JHipster mail property, for standard properties see MailProperties
         from: footierepo@localhost
+    restWS:
+        url: http://api.football-data.org/v1/soccerseasons/
     metrics: # DropWizard Metrics configuration, used by MetricsConfiguration
         jmx.enabled: true
         spark:

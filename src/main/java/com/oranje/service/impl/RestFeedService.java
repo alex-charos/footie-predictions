@@ -9,6 +9,8 @@ import java.util.Date;
 import java.util.List;
 import java.util.Map;
 
+import javax.inject.Inject;
+
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.http.HttpEntity;
@@ -18,6 +20,7 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
 import org.springframework.web.client.RestTemplate;
 
+import com.oranje.config.JHipsterProperties;
 import com.oranje.domain.Fixture;
 import com.oranje.service.FeedService;
 
@@ -26,21 +29,24 @@ public class RestFeedService implements FeedService {
 	private final Logger logger = LoggerFactory.getLogger(RestFeedService.class);
 	SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd'T'HH:mm:ssX");
 
+	@Inject
+    private JHipsterProperties jHipsterProperties;
+	
 	@Override
 	public List<Fixture> retrieveFixtures() {
 		HttpHeaders headers = new HttpHeaders();
 
-		headers.set("X-AUTH-TOKEN", "79e23fafd923491b91572cde3c9d41e3");
+		headers.set("X-AUTH-TOKEN", jHipsterProperties.getRestWS().getToken());
 
 		HttpEntity<String> entity = new HttpEntity<String>("parameters", headers);
 
 		RestTemplate restTemplate = new RestTemplate();
-		ResponseEntity<Map> re = restTemplate.exchange("http://api.football-data.org/v1/soccerseasons/440/fixtures",
+		ResponseEntity<Map> re = restTemplate.exchange(jHipsterProperties.getRestWS().getUrl()+"440/fixtures",
 				HttpMethod.GET, entity, Map.class);
 		Map<String, Object> map = re.getBody();
 		List<Map> fixtureList = (List<Map>) map.get("fixtures");
 		
-		ResponseEntity<Map> relt = restTemplate.exchange("http://api.football-data.org/v1/soccerseasons/440/leagueTable",
+		ResponseEntity<Map> relt = restTemplate.exchange(jHipsterProperties.getRestWS().getUrl()+"440/leagueTable",
 				HttpMethod.GET, entity, Map.class);
 		Map<String, Object> maplt = relt.getBody();
 		

@@ -45,6 +45,9 @@ server:
 jhipster:
     mail: # specific JHipster mail property, for standard properties see MailProperties
         from: footierepo@localhost
+    restWS:
+        url: http://api.football-data.org/v1/soccerseasons/
+        token: 79e23fafd923491b91572cde3c9d41e3
     metrics: # DropWizard Metrics configuration, used by MetricsConfiguration
         jmx.enabled: true
         spark:

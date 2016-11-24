@@ -24,6 +24,8 @@ public class JHipsterProperties {
     private final Cache cache = new Cache();
 
     private final Mail mail = new Mail();
+    
+    private final RestWS restWS = new RestWS();
 
     private final Security security = new Security();
 
@@ -71,6 +73,9 @@ public class JHipsterProperties {
         return cors;
     }
 
+    public RestWS getRestWS() {
+    	return restWS;
+    }
 
     public static class Async {
 
@@ -183,6 +188,23 @@ public class JHipsterProperties {
         }
     }
 
+    public static class RestWS {
+    	private String url;
+    	private String token;
+		public String getUrl() {
+			return url;
+		}
+		public void setUrl(String url) {
+			this.url = url;
+		}
+		public String getToken() {
+			return token;
+		}
+		public void setToken(String token) {
+			this.token = token;
+		}
+    	
+    }
     public static class Mail {
 
         private String from = "footierepo@localhost";
@@ -218,6 +240,8 @@ public class JHipsterProperties {
             }
         }
     }
+    
+    
 
     public static class Swagger {
 
