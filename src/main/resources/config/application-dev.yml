@@ -47,7 +47,7 @@ jhipster:
         from: footierepo@localhost
     restWS:
         url: http://api.football-data.org/v1/soccerseasons/
-        token: 79e23fafd923491b91572cde3c9d41e3
+        token: A_TOKEN
     metrics: # DropWizard Metrics configuration, used by MetricsConfiguration
         jmx.enabled: true
         spark:

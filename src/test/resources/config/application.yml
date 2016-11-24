@@ -11,13 +11,6 @@
 # ===================================================================
 
 spring:
-    data:
-        mongodb:
-            host: ds040888.mlab.com
-            port: 40888
-            database: predictions-dev
-            username: oranje
-            password: oranje
     mail:
         host: localhost
     mvc:
