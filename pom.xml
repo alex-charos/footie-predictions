@@ -133,7 +133,7 @@
             <artifactId>commons-lang</artifactId>
             <version>${commons-lang.version}</version>
         </dependency>
-       
+
         <!-- reporting -->
         <dependency>
             <groupId>fr.ippon.spark.metrics</groupId>

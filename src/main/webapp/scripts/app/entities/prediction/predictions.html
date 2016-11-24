@@ -32,9 +32,9 @@
             <tr ng-repeat="(key, value) in   predictions.resultPerEvent">
 
                 <td>{{getGroupByFixtureId(key)}}</td>
-                <td> <img src = "{{getHomeFlagByFixtureId(key)}}" /></td>
+                <td> <img src = "{{getHomeFlagByFixtureId(key)}}" height="30px;" /></td>
                 <td>{{getHomeByFixtureId(key)}}</td>
-                <td> <img src = "{{getAwayFlagByFixtureId(key)}}" /></td>
+                <td> <img src = "{{getAwayFlagByFixtureId(key)}}" height="30px;" /></td>
                 <td>{{getAwayByFixtureId(key)}}</td>
 
                 <!--td ng-show="getGroupByFixtureId(key) != 'A-2' && getGroupByFixtureId(key) != 'B-2' && getGroupByFixtureId(key) != 'C-2' && getGroupByFixtureId(key) != 'D-2' && getGroupByFixtureId(key) != 'E-2' && getGroupByFixtureId(key) != 'F-2' && getGroupByFixtureId(key) != 'G-2' && getGroupByFixtureId(key) != 'H-2'">

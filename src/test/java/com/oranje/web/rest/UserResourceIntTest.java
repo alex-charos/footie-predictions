@@ -2,7 +2,8 @@ package com.oranje.web.rest;
 
 import com.oranje.Application;
 import com.oranje.repository.UserRepository;
-import com.oranje.service.UserService;
+import com.oranje.service.impl.UserService;
+
 import org.junit.Before;
 import org.junit.Test;
 import org.junit.runner.RunWith;

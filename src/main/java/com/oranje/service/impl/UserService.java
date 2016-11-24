@@ -1,4 +1,4 @@
-package com.oranje.service;
+package com.oranje.service.impl;
 
 import com.oranje.domain.Authority;
 import com.oranje.domain.PersistentToken;

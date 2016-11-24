@@ -20,11 +20,11 @@ spring:
             enabled: false # we use Grunt + BrowserSync for livereload
     data:
         mongodb:
-            host: ds023213.mlab.com
-            port: 23213
-            database: predictions
+            host: ds040888.mlab.com
+            port: 40888
+            database: predictions-dev
             username: oranje
-            password: oranje123!
+            password: oranje
     mail:
         host: 10.70.4.161
     messages:

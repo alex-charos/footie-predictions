@@ -4,7 +4,8 @@ import com.oranje.Application;
 import com.oranje.config.audit.AuditEventConverter;
 import com.oranje.domain.PersistentAuditEvent;
 import com.oranje.repository.PersistenceAuditEventRepository;
-import com.oranje.service.AuditEventService;
+import com.oranje.service.impl.AuditEventService;
+
 import org.junit.Before;
 import org.junit.Test;
 import org.junit.runner.RunWith;
