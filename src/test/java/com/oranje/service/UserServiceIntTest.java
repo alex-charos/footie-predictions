@@ -6,6 +6,8 @@ import com.oranje.domain.User;
 import com.oranje.repository.PersistentTokenRepository;
 import com.oranje.repository.UserRepository;
 import java.time.ZonedDateTime;
+
+import com.oranje.service.impl.UserService;
 import com.oranje.service.util.RandomUtil;
 import java.time.LocalDate;
 import org.junit.Test;

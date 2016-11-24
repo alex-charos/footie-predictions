@@ -1,11 +1,14 @@
 package com.oranje.domain;
 
+import java.io.Serializable;
+import java.time.ZonedDateTime;
+import java.util.Objects;
+
 import org.springframework.data.annotation.Id;
 import org.springframework.data.mongodb.core.mapping.Document;
 import org.springframework.data.mongodb.core.mapping.Field;
 
-import java.io.Serializable;
-import java.util.Objects;
+import com.fasterxml.jackson.annotation.JsonFormat;
 
 /**
  * A Fixture.
@@ -16,6 +19,8 @@ public class Fixture implements Serializable {
 
     @Id
     private String id;
+    
+    private String fdId;
 
     @Field("home")
     private String home;
@@ -45,6 +50,10 @@ public class Fixture implements Serializable {
     private String awayFlag;
     
     private Integer order;
+    
+    @JsonFormat( pattern = "yyyy-MM-dd")
+    private ZonedDateTime kickOff;
+    
     
     
     public String getId() {
@@ -169,5 +178,21 @@ public class Fixture implements Serializable {
 
 	public void setOrder(Integer order) {
 		this.order = order;
+	}
+
+	public ZonedDateTime getKickOff() {
+		return kickOff;
+	}
+
+	public void setKickOff(ZonedDateTime kickOff) {
+		this.kickOff = kickOff;
+	}
+
+	public String getFdId() {
+		return fdId;
+	}
+
+	public void setFdId(String fdId) {
+		this.fdId = fdId;
 	}
 }

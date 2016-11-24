@@ -34,9 +34,9 @@
             <tr ng-repeat="(key, value) in   predictions.resultPerEvent">
 
                 <td>{{getGroupByFixtureId(key)}}</td>
-                <td> <img src = "{{getHomeFlagByFixtureId(key)}}" /></td>
+                <td> <img src = "{{getHomeFlagByFixtureId(key)}}" height="30px;" /></td>
                 <td>{{getHomeByFixtureId(key)}}</td>
-                <td> <img src = "{{getAwayFlagByFixtureId(key)}}" /></td>
+                <td> <img src = "{{getAwayFlagByFixtureId(key)}}" height="30px;" /></td>
                 <td>{{getAwayByFixtureId(key)}}</td>
 
                 <!--td ng-show="getGroupByFixtureId(key) != 'A-2' && getGroupByFixtureId(key) != 'B-2' && getGroupByFixtureId(key) != 'C-2' && getGroupByFixtureId(key) != 'D-2' && getGroupByFixtureId(key) != 'E-2' && getGroupByFixtureId(key) != 'F-2' && getGroupByFixtureId(key) != 'G-2' && getGroupByFixtureId(key) != 'H-2'">
@@ -72,21 +72,26 @@
 
 
 
-                <td ng-show="getGroupByFixtureId(key) != 'A-5' && getGroupByFixtureId(key) != 'B-5' && getGroupByFixtureId(key) != 'C-5' && getGroupByFixtureId(key) != 'D-5' && getGroupByFixtureId(key) != 'E-5' && getGroupByFixtureId(key) != 'F-5' && getGroupByFixtureId(key) != 'G-5' && getGroupByFixtureId(key) != 'H-5'">
+
+                <td ng-show="!isFixtureInFuture(key)">
                     <div>
                         {{value.homeScore}}
                     </div>
-                </td><td ng-show="getGroupByFixtureId(key) != 'A-5' && getGroupByFixtureId(key) != 'B-5' && getGroupByFixtureId(key) != 'C-5' && getGroupByFixtureId(key) != 'D-5' && getGroupByFixtureId(key) != 'E-5' && getGroupByFixtureId(key) != 'F-5' && getGroupByFixtureId(key) != 'G-5' && getGroupByFixtureId(key) != 'H-5'">
+                </td>
+                <td ng-show="!isFixtureInFuture(key)">
                     <div>
                         {{value.awayScore}}
                     </div>
                 </td>
-                <td ng-show="getGroupByFixtureId(key) == 'A-5' || getGroupByFixtureId(key) == 'B-5' || getGroupByFixtureId(key) == 'C-5' || getGroupByFixtureId(key) == 'D-5' || getGroupByFixtureId(key) == 'E-5' || getGroupByFixtureId(key) == 'F-5' || getGroupByFixtureId(key) == 'G-5' || getGroupByFixtureId(key) == 'H-5'">
+
+                <td ng-show="isFixtureInFuture(key)">
                     <div>
                         <input type="text" id="key_{{key}}_home" size="2" data-teamId="{{getHomeByFixtureId(key)}}" class="home_id_{{key}}"
                                maxlength="2" ng-model = "value.homeScore"/>
                     </div>
-                </td><td ng-show="getGroupByFixtureId(key) == 'A-5' || getGroupByFixtureId(key) == 'B-5' || getGroupByFixtureId(key) == 'C-5' || getGroupByFixtureId(key) == 'D-5' || getGroupByFixtureId(key) == 'E-5' || getGroupByFixtureId(key) == 'F-5' || getGroupByFixtureId(key) == 'G-5' || getGroupByFixtureId(key) == 'H-5'">
+
+                </td>
+                <td ng-show="isFixtureInFuture(key)">
                     <div>
                         <input type="text" id="key_{{key}}_away" size="2" data-teamId="{{getAwayByFixtureId(key)}}" class="away_id_{{key}}"
                                maxlength="2" ng-model = "value.awayScore" />

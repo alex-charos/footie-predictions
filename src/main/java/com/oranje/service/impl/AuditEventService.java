@@ -1,4 +1,4 @@
-package com.oranje.service;
+package com.oranje.service.impl;
 
 import com.oranje.config.audit.AuditEventConverter;
 import com.oranje.domain.PersistentAuditEvent;
