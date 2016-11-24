@@ -168,7 +168,6 @@ angular.module('footierepoApp')
             
              for (var i =0; i< $scope.fixtures.length; i++) {
                 if ($scope.fixtures[i].id === id) {
-                    console.log(id);
                     if (new Date(Date.parse($scope.fixtures[i].kickOff)) > new Date()) {
                         return true;
                     } else {
