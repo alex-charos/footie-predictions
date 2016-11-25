@@ -11,6 +11,8 @@ import java.util.List;
 import java.util.Map;
 import java.util.Set;
 
+import javax.annotation.PostConstruct;
+
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -36,12 +38,15 @@ public class FixtureUpdater {
     @Autowired
     StringComparator stringComparator;
     
+    
+    
     @Autowired
     FeedService feedService;
+    @PostConstruct
     @Scheduled(cron="0 0 20 * * FRI")
 	public void retrieveFixtures() {
 		List<Fixture> storedFixtures = fixtureRepository.findAll();
-		
+		logger.info("retrieving fixtures...");
 		List<Fixture> restFixtures = feedService.retrieveFixtures();
 		
 		//update existing matching fixtures (with lower threshold)
@@ -69,7 +74,7 @@ public class FixtureUpdater {
 				fixtureRepository.save(f);
 			}
 		}
-
+		logger.info("retrieving fixtures done...");
 	}
 	
 	
