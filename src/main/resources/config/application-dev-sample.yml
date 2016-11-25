@@ -20,13 +20,13 @@ spring:
             enabled: false # we use Grunt + BrowserSync for livereload
     data:
         mongodb:
-            host: ds040888.mlab.com
-            port: 40888
-            database: predictions-dev
-            username: oranje
-            password: oranje
+            host: host
+            port: port
+            database: DB
+            username: user
+            password: pass
     mail:
-        host: 10.70.4.161
+        host: localhost
     messages:
         cache-seconds: 1
     thymeleaf:
@@ -47,7 +47,7 @@ jhipster:
         from: footierepo@localhost
     restWS:
         url: http://api.football-data.org/v1/soccerseasons/
-        token: 79e23fafd923491b91572cde3c9d41e3
+        token: A-TOKEN
     metrics: # DropWizard Metrics configuration, used by MetricsConfiguration
         jmx.enabled: true
         spark:
