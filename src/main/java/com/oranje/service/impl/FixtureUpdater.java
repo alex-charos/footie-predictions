@@ -107,6 +107,4 @@ public class FixtureUpdater {
 		String awayTeam;
 		String feedId;
 	}
-	
-
 }

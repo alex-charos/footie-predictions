@@ -27,6 +27,7 @@ import com.oranje.domain.HomeAwayScore;
 import com.oranje.domain.Prediction;
 import com.oranje.repository.FixtureRepository;
 import com.oranje.repository.PredictionRepository;
+import com.oranje.service.impl.FixtureUpdater;
 import com.oranje.web.rest.util.HeaderUtil;
 
 /**
@@ -44,6 +45,22 @@ public class FixtureResource {
 	@Inject
 	private PredictionRepository predictionRepository;
 
+	
+	@Inject
+	private FixtureUpdater fixtureUpdater;
+	
+	/**
+	 * GET /fixtures/update -> Update fixtures from ws
+	 */
+	@RequestMapping(value = "/fixtures/update", method = RequestMethod.GET)
+	@Timed
+	public void updateFixtures() throws URISyntaxException {
+		
+		fixtureUpdater.retrieveFixtures();
+		
+	}
+	
+	
 	/**
 	 * POST /fixtures -> Create a new fixture.
 	 */
