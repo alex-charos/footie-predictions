@@ -42,8 +42,8 @@ public class FixtureUpdater {
     
     @Autowired
     FeedService feedService;
-    @PostConstruct
-    @Scheduled(cron="0 0 20 * * FRI")
+    //@PostConstruct
+   // @Scheduled(cron="0 0 20 * * FRI")
 	public void retrieveFixtures() {
 		List<Fixture> storedFixtures = fixtureRepository.findAll();
 		logger.info("retrieving fixtures...");
