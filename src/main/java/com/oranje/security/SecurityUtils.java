@@ -1,5 +1,11 @@
 package com.oranje.security;
 
+import java.util.ArrayList;
+import java.util.Collection;
+
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
+import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
 import org.springframework.security.core.Authentication;
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.authority.SimpleGrantedAuthority;
@@ -7,13 +13,17 @@ import org.springframework.security.core.context.SecurityContext;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.security.core.userdetails.User;
 import org.springframework.security.core.userdetails.UserDetails;
+import org.springframework.social.connect.Connection;
+import org.springframework.social.connect.UserProfile;
 
-import java.util.Collection;
+import com.oranje.domain.Authority;
 
 /**
  * Utility class for Spring Security.
  */
 public final class SecurityUtils {
+
+    private static final Logger log = LoggerFactory.getLogger(SecurityUtils.class);
 
     private SecurityUtils() {
     }
@@ -60,7 +70,7 @@ public final class SecurityUtils {
      *
      * @return the current user
      */
-    public static User getCurrentUser() {
+    public static UserDetails getCurrentUser() {
         SecurityContext securityContext = SecurityContextHolder.getContext();
         Authentication authentication = securityContext.getAuthentication();
         if (authentication != null) {
@@ -70,7 +80,17 @@ public final class SecurityUtils {
         }
         throw new IllegalStateException("User not found!");
     }
-
+    public static void authenticateSocial(com.oranje.domain.User user) {
+        Collection<GrantedAuthority> auths = new ArrayList<>();
+    	for  (Authority a : user.getAuthorities()) {
+    		auths.add(new SimpleGrantedAuthority(a.getName()));
+    	}
+    	
+        User u = new User(user.getLogin(), user.getPassword(), auths);
+        UsernamePasswordAuthenticationToken authentication = new UsernamePasswordAuthenticationToken(u, null, null);
+        SecurityContextHolder.getContext().setAuthentication(authentication);
+        log.info("User {} {} connected.", user.getFirstName(), user.getLastName());
+    }
     /**
      * If the current user has a specific authority (security role).
      *

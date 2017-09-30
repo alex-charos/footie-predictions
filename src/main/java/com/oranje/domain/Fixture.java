@@ -160,6 +160,7 @@ public class Fixture implements Serializable {
     public String toString() {
         return "Fixture{" +
             "id=" + id +
+            "fdid=" + fdId +
             ", home='" + home + "'" +
             ", away='" + away + "'" +
             ", homeGoals='" + homeGoals + "'" +

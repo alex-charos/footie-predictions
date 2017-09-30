@@ -51,7 +51,7 @@ public class FixtureUpdater {
 		
 		//update existing matching fixtures (with lower threshold)
 		for (Fixture f : storedFixtures) {
-			Fixture restFixture = getFixture(f.getHome(), f.getAway(), restFixtures, 1.4);
+			Fixture restFixture = getFixture(f.getHome(), f.getAway(), Integer.parseInt(f.getFdId()), restFixtures, 1.4);
 			if (restFixture !=null) {
 				f.setFdId(restFixture.getFdId());
 				f.setHome(restFixture.getHome());
@@ -69,7 +69,7 @@ public class FixtureUpdater {
 		 storedFixtures = fixtureRepository.findAll();
 		//create new fixtures (with higher threshold)
 		for (Fixture f : restFixtures) {
-			Fixture dbFixture = getFixture(f.getHome(),f.getAway(), storedFixtures, 1.8);
+			Fixture dbFixture = getFixture(f.getHome(),f.getAway(), Integer.parseInt(f.getFdId()), storedFixtures, 1.8);
 			if (dbFixture == null) {
 				fixtureRepository.save(f);
 			}
@@ -78,7 +78,7 @@ public class FixtureUpdater {
 	}
 	
 	
-	private Fixture getFixture(String home, String away, List<Fixture> fixtures, double threshold) {
+	private Fixture getFixture(String home, String away, Integer feedId, List<Fixture> fixtures, double threshold) {
 		double mostLikey = 0.0;
 		Fixture candidate = null;
 		Set<String> teams = new HashSet<String>();
@@ -94,6 +94,9 @@ public class FixtureUpdater {
 			teams.add(f.getAway());
 		}
 		if (mostLikey>=threshold) {
+			if (candidate.getFdId()!=null && !candidate.getFdId().equals(feedId)) {
+				return null;
+			}
 			return candidate;
 		} else {
 			logger.warn("Rejected! " + home + " vs " + away + " Could be: " + candidate.getHome() + " vs " + candidate.getAway() + "@ " + mostLikey + " But Threshold not reached ");

@@ -33,8 +33,8 @@ public class User extends AbstractAuditingEntity implements Serializable {
     private String login;
 
     @JsonIgnore
-    @NotNull
-    @Size(min = 60, max = 60) 
+    //@NotNull
+   // @Size(min = 60, max = 60) 
     private String password;
 
     @Size(max = 50)
@@ -45,7 +45,7 @@ public class User extends AbstractAuditingEntity implements Serializable {
     @Field("last_name")
     private String lastName;
 
-    @Email
+   // @Email
     @Size(max = 100)
     private String email;
 
