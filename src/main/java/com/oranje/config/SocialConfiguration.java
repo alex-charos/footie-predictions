@@ -33,12 +33,15 @@ public class SocialConfiguration {
 				newUser.setActivated(true);
 				newUser.setLogin(userProfile.getUsername());
 				newUser.setAuthorities(auths);
-				newUser.setEmail(userProfile.getEmail());
+				if (userProfile.getEmail()!=null) {
+					newUser.setEmail(userProfile.getEmail());	
+				}
+				
 				newUser.setFirstName(userProfile.getFirstName());
 				newUser.setLastName(userProfile.getLastName());
 				newUser.setPassword("twitteruser");
 				newUser.setCreatedBy("Social");
-
+				newUser.setSocial(true);
 				SecurityUtils.authenticateSocial(newUser);
 			}
 			return null;

@@ -33,8 +33,6 @@ public class User extends AbstractAuditingEntity implements Serializable {
     private String login;
 
     @JsonIgnore
-    //@NotNull
-   // @Size(min = 60, max = 60) 
     private String password;
 
     @Size(max = 50)
@@ -45,7 +43,6 @@ public class User extends AbstractAuditingEntity implements Serializable {
     @Field("last_name")
     private String lastName;
 
-   // @Email
     @Size(max = 100)
     private String email;
 
@@ -66,6 +63,8 @@ public class User extends AbstractAuditingEntity implements Serializable {
 
     @Field("reset_date")
     private ZonedDateTime resetDate = null;
+    
+    private boolean isSocial;
 
     @JsonIgnore
     private Set<Authority> authorities = new HashSet<>();
@@ -201,4 +200,12 @@ public class User extends AbstractAuditingEntity implements Serializable {
             ", activationKey='" + activationKey + '\'' +
             "}";
     }
+
+	public boolean isSocial() {
+		return isSocial;
+	}
+
+	public void setSocial(boolean isSocial) {
+		this.isSocial = isSocial;
+	}
 }

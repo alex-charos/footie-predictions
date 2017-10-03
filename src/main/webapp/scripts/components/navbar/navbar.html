@@ -31,7 +31,7 @@
                 <li has-authority="ROLE_ADMIN" ui-sref-active="active" ><a ui-sref="fixture" data-toggle="collapse" data-target=".navbar-collapse.in"><span class="glyphicon glyphicon-asterisk"></span>
                         &#xA0;<span >Enter Fixtures</span></a></li>
                 <!-- jhipster-needle-add-element-to-menu - JHipster will add new menu items here -->
-                <li ui-sref-active="active" ng-switch-when="true"><a ui-sref="password"    data-toggle="collapse" data-target=".navbar-collapse.in"><span class="glyphicon glyphicon-pencil"></span>
+                <li ui-sref-active="active" ng-switch-when="true" ng-show="!isSocial"><a ui-sref="password"    data-toggle="collapse" data-target=".navbar-collapse.in"><span class="glyphicon glyphicon-pencil"></span>
                             &#xA0;<span>Change Password</span></a></li>
                 <li ui-sref-active="active" ng-switch-when="true"><a href="" ng-click="logout()" id="logout" data-toggle="collapse" data-target=".navbar-collapse.in"><span class="glyphicon glyphicon-log-out"></span>
                             &#xA0;<span>Sign out</span></a></li>

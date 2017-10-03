@@ -48,7 +48,7 @@ public class SocialController {
 			UserProfile userProfile = connection.fetchUserProfile();
 
 			User newUser = new User();
-			
+			newUser.setSocial(true);
 			Optional<User> u = userRepository.findOneByLogin(userProfile.getUsername());
 			
 			if (u.isPresent()) {
@@ -63,7 +63,9 @@ public class SocialController {
 			newUser.setActivated(true);
 			newUser.setLogin(userProfile.getUsername());
 			newUser.setAuthorities(auths);
-			newUser.setEmail(userProfile.getEmail());
+			if (userProfile.getEmail()!=null) {
+				newUser.setEmail(userProfile.getEmail());	
+			}
 			newUser.setFirstName(userProfile.getFirstName());
 			newUser.setLastName(userProfile.getLastName());
 			newUser.setPassword("twitteruser");

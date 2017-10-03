@@ -152,6 +152,7 @@ public class AccountResourceIntTest {
             true,                   // activated
             "en",                   // langKey
             new HashSet<>(Arrays.asList(AuthoritiesConstants.USER))
+            ,false
         );
 
         restMvc.perform(
@@ -176,6 +177,7 @@ public class AccountResourceIntTest {
             true,                   // activated
             "en",                   // langKey
             new HashSet<>(Arrays.asList(AuthoritiesConstants.USER))
+            ,false
         );
 
         restUserMockMvc.perform(
@@ -200,6 +202,7 @@ public class AccountResourceIntTest {
             true,               // activated
             "en",               // langKey
             new HashSet<>(Arrays.asList(AuthoritiesConstants.USER))
+            ,false
         );
 
         restUserMockMvc.perform(
@@ -225,11 +228,12 @@ public class AccountResourceIntTest {
             true,                   // activated
             "en",                   // langKey
             new HashSet<>(Arrays.asList(AuthoritiesConstants.USER))
+            ,false
         );
 
         // Duplicate login, different e-mail
         UserDTO dup = new UserDTO(u.getLogin(), u.getPassword(), u.getLogin(), u.getLastName(),
-            "alicejr@example.com", true, u.getLangKey(), u.getAuthorities());
+            "alicejr@example.com", true, u.getLangKey(), u.getAuthorities(),false);
 
         // Good user
         restMvc.perform(
@@ -261,12 +265,12 @@ public class AccountResourceIntTest {
             "john@example.com",     // e-mail
             true,                   // activated
             "en",                   // langKey
-            new HashSet<>(Arrays.asList(AuthoritiesConstants.USER))
+            new HashSet<>(Arrays.asList(AuthoritiesConstants.USER)),false
         );
 
         // Duplicate e-mail, different login
         UserDTO dup = new UserDTO("johnjr", u.getPassword(), u.getLogin(), u.getLastName(),
-            u.getEmail(), true, u.getLangKey(), u.getAuthorities());
+            u.getEmail(), true, u.getLangKey(), u.getAuthorities(),false);
 
         // Good user
         restMvc.perform(
@@ -298,7 +302,7 @@ public class AccountResourceIntTest {
             true,                   // activated
             "en",                   // langKey
             new HashSet<>(Arrays.asList(AuthoritiesConstants.ADMIN)) // <-- only admin should be able to do that
-        );
+            ,false);
 
         restMvc.perform(
             post("/api/register")
